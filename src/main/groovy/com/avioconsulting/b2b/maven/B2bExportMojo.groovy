@@ -5,6 +5,10 @@ import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.project.MavenProject
+import org.apache.tools.ant.DefaultLogger
+import org.apache.tools.ant.Project
+import org.apache.tools.ant.ProjectHelper
 
 @Mojo(name = 'b2bExport')
 public class B2bExportMojo extends AbstractMojo {
@@ -20,7 +24,57 @@ public class B2bExportMojo extends AbstractMojo {
     @Parameter(property = 'soa.deploy.url', required = true)
     private String soaDeployUrl
 
+    @Parameter(property = 'soa.oracle.home', required = true)
+    private String oracleSoaHome
+
     public void execute() throws MojoExecutionException, MojoFailureException {
-        print "We would deploy using username ${this.weblogicUser} and password ${this.weblogicPassword} on URL ${this.soaDeployUrl}"
+        def antProject = createAntProject()
+        MavenProject mavenProject = this.pluginContext.project
+        def tmpDir = new File(mavenProject.basedir, 'tmp')
+        def zipPath = new File(tmpDir, 'b2bExport.zip')
+        antProject.setProperty 'exportfile', zipPath.absolutePath
+        runAntTarget antProject, 'b2bexport'
+    }
+
+    private void runAntTarget(Project antProject, String target) {
+        try {
+            antProject.fireBuildStarted()
+            antProject.init()
+            antProject.executeTarget target
+            antProject.fireBuildFinished null
+        }
+        catch (e) {
+            antProject.fireBuildFinished e
+            throw e
+        }
+    }
+
+    private void setStandardB2BAntProperties(Project antProject) {
+        // want this to throw errors by default
+        antProject.setProperty 'exitonerror', true.toString()
+        antProject.setProperty 'java.naming.provider.url', this.soaDeployUrl
+        antProject.setProperty 'java.naming.factory.initial', 'weblogic.jndi.WLInitialContextFactory'
+        antProject.setProperty 'java.naming.security.principal', this.weblogicUser
+        antProject.setProperty 'java.naming.security.credentials', this.weblogicPassword
+    }
+
+    private Project createAntProject() {
+        def logger = new DefaultLogger()
+        logger.errorPrintStream = System.err
+        logger.outputPrintStream = System.out
+        logger.messageOutputLevel = Project.MSG_INFO
+        def antProject = new Project()
+        def binPath = new File(this.oracleSoaHome, 'bin')
+        def antXmlPath = new File(binPath, 'ant-b2b-util.xml')
+        if (!antXmlPath.exists()) {
+            throw new FileNotFoundException("Unable to find B2B ANT task @ ${antXmlPath}!")
+        }
+        antProject.setUserProperty 'ant.file', antXmlPath.absolutePath
+        antProject.addBuildListener logger
+        def helper = ProjectHelper.projectHelper
+        antProject.addReference 'ant.projectHelper', helper
+        helper.parse antProject, antXmlPath
+        setStandardB2BAntProperties antProject
+        antProject
     }
 }

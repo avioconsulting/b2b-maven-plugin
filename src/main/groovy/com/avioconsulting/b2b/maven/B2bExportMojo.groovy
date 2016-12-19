@@ -29,10 +29,29 @@ public class B2bExportMojo extends AbstractMojo {
     public void execute() throws MojoExecutionException, MojoFailureException {
         def antProject = createAntProject()
         MavenProject mavenProject = this.pluginContext.project
-        def tmpDir = new File(mavenProject.basedir, 'tmp')
+        def basedir = mavenProject.basedir
+        def tmpDir = new File(basedir, 'tmp')
         def zipPath = new File(tmpDir, 'b2bExport.zip')
         antProject.setProperty 'exportfile', zipPath.absolutePath
         runAntTarget antProject, 'b2bexport'
+        def antBuilder = new AntBuilder()
+        this.log.info 'Unpacking temporary ZIP file'
+        antBuilder.unzip src: zipPath.absolutePath,
+                         dest: tmpDir.absolutePath,
+                         overwrite: true
+        def b2bPath = join(tmpDir, 'soa', 'b2b')
+        def outputDir = new File(basedir, 'src')
+        if (outputDir.exists()) {
+            outputDir.deleteDir()
+        }
+        b2bPath.renameTo(outputDir)
+        this.log.info 'Removing temporary directory'
+        tmpDir.deleteDir()
+    }
+
+    private static File join(File parent, String... parts) {
+        def separator = System.getProperty 'file.separator'
+        new File(parent, parts.join(separator))
     }
 
     private void runAntTarget(Project antProject, String target) {

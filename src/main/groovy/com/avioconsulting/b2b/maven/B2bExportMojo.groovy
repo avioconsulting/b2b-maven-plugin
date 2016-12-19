@@ -59,10 +59,6 @@ public class B2bExportMojo extends AbstractMojo {
     }
 
     private Project createAntProject() {
-        def logger = new DefaultLogger()
-        logger.errorPrintStream = System.err
-        logger.outputPrintStream = System.out
-        logger.messageOutputLevel = Project.MSG_INFO
         def antProject = new Project()
         def binPath = new File(this.oracleSoaHome, 'bin')
         def antXmlPath = new File(binPath, 'ant-b2b-util.xml')
@@ -70,7 +66,7 @@ public class B2bExportMojo extends AbstractMojo {
             throw new FileNotFoundException("Unable to find B2B ANT task @ ${antXmlPath}!")
         }
         antProject.setUserProperty 'ant.file', antXmlPath.absolutePath
-        antProject.addBuildListener logger
+        antProject.addBuildListener new AntLogger(this.log)
         def helper = ProjectHelper.projectHelper
         antProject.addReference 'ant.projectHelper', helper
         helper.parse antProject, antXmlPath

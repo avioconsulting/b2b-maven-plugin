@@ -6,7 +6,6 @@ import org.apache.maven.plugin.MojoFailureException
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
 import org.apache.maven.project.MavenProject
-import org.apache.tools.ant.DefaultLogger
 import org.apache.tools.ant.Project
 import org.apache.tools.ant.ProjectHelper
 

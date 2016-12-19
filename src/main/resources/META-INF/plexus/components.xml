@@ -12,6 +12,9 @@
                     <lifecycle>
                         <id>default</id>
                         <phases>
+                            <generate-resources>
+                                com.avioconsulting:b2b-maven-plugin:b2bExport
+                            </generate-resources>
                             <process-resources>
                                 org.apache.maven.plugins:maven-resources-plugin:resources
                             </process-resources>
@@ -28,14 +31,14 @@
                                 org.apache.maven.plugins:maven-surefire-plugin:test
                             </test>
                             <package>
-                                com.avioconsulting:b2b-maven-plugin:b2bExport
+                                com.avioconsulting:b2b-maven-plugin:b2bPackage
                             </package>
-                            <install>
-                                org.apache.maven.plugins:maven-install-plugin:install
-                            </install>
-                            <deploy>
-                                org.apache.maven.plugins:maven-deploy-plugin:deploy
-                            </deploy>
+                            <!--<install>-->
+                                <!--org.apache.maven.plugins:maven-install-plugin:install-->
+                            <!--</install>-->
+                            <!--<deploy>-->
+                                <!--org.apache.maven.plugins:maven-deploy-plugin:deploy-->
+                            <!--</deploy>-->
                         </phases>
                     </lifecycle>
                 </lifecycles>

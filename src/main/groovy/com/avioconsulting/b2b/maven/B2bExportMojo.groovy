@@ -9,10 +9,15 @@ import org.apache.maven.project.MavenProject
 @SuppressWarnings("GroovyUnusedDeclaration")
 @Mojo(name = 'b2bExport')
 class B2bExportMojo extends AbstractB2bMojo {
-    @Parameter(property = 'b2b.overwrite', defaultValue = 'true')
-    private boolean overwrite
+    @Parameter(property = 'b2b.export', defaultValue = 'false')
+    private boolean doExport
 
     void execute() throws MojoExecutionException, MojoFailureException {
+        if (!this.doExport) {
+            this.log.info 'Skipping B2B export, use -Db2b.export=true to enable it'
+            return
+        }
+        this.log.info "Exporting B2B artifacts from server to this project's directory..."
         def antProject = createAntProject()
         MavenProject mavenProject = this.pluginContext.project
         def basedir = mavenProject.basedir

@@ -46,7 +46,7 @@ abstract class AbstractB2bMojo extends AbstractMojo {
         join this.baseDir, 'tmp'
     }
 
-    protected static void runAntTarget(Project antProject, String target) {
+    protected static void runAntTarget(antProject, target) {
         try {
             antProject.fireBuildStarted()
             antProject.init()

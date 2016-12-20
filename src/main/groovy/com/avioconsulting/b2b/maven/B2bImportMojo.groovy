@@ -15,7 +15,7 @@ class B2bImportMojo extends AbstractB2bMojo {
     private boolean purgeBeforeImport
 
     void execute() throws MojoExecutionException, MojoFailureException {
-        def artifact = this.project.artifact.file
+        def artifact = this.projectArtifact
         this.log.info "Importing B2B artifacts from ${artifact} to server..."
         def antProject = createAntProject()
         antProject.setProperty 'exportfile', artifact.absolutePath
@@ -25,9 +25,14 @@ class B2bImportMojo extends AbstractB2bMojo {
             doPurge antProject
         }
 
-        ['b2bimport', 'b2bvalidate', 'b2bdeploy'].each { target ->
-            runAntTarget antProject, target
-        }
+        def ant = { String target -> runAntTarget antProject, target }
+        ant 'b2bimport'
+        ant 'b2bvalidate'
+        ant 'b2bdeploy'
+    }
+
+    private File getProjectArtifact() {
+        this.project.artifact.file
     }
 
     private void doPurge(Project antProject) {

@@ -60,21 +60,19 @@ trait MojoAnt {
     def getAntProjectMock(mojo, Closure<String> onTarget) {
         def stub = new StubFor(Project)
         def demand = stub.demand
-        demand.setProperty { prop, val ->
+        demand.setProperty(0..20) { prop, val ->
             println "setting prop ${prop}"
             propsUsed[prop] = val
         }
-        demand.executeTarget { t ->
+        demand.executeTarget(0..20) { t ->
             targetsRun << t
             println "mock execute target ${t}"
             onTarget(t)
         }
-        demand.fireBuildStarted {}
-        demand.init {}
-        demand.fireBuildFinished { e -> }
-        mojo.metaClass.createAntProject = { ->
-            GroovySystem.getMetaClassRegistry().setMetaClass(stub.proxy.theClass, stub.proxy)
-            new Project()
-        }
+        demand.fireBuildStarted(0..20) {}
+        demand.init(0..20) {}
+        demand.fireBuildFinished(0..20) { e -> }
+        def project = stub.proxyInstance()
+        mojo.metaClass.createAntProject = { -> project }
     }
 }

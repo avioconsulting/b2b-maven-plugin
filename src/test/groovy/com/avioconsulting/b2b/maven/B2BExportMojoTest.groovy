@@ -58,9 +58,35 @@ class B2BExportMojoTest {
         // assert
         assertThat targetsRun,
                    is(equalTo(['b2bexport']))
+    }
+
+    @Test
+    void runs_CorrectProperties() {
+        // arrange
+        mojo.doExport = true
+        SimpleFileStub()
+
+        // act
+        mojo.execute()
+
+        // assert
         assertThat propsUsed,
                    is(equalTo([exportfile: zipFile.absolutePath]))
-        fail 'write this'
+    }
+
+    @Test
+    void runs_FileStructure() {
+        // arrange
+        mojo.doExport = true
+        SimpleFileStub()
+
+        // act
+        mojo.execute()
+        def files = new FileNameFinder().getFileNames(baseDirectory.absolutePath, '**/*.xml')
+
+        // assert
+        assertThat files,
+                   is(equalTo([new File(baseDirectory, 'src/main/resources/b2b/theFile.xml').absolutePath]))
     }
 
     private SimpleFileStub() {
@@ -73,6 +99,7 @@ class B2BExportMojoTest {
             antBuilder.zip(destFile: zipFile.absolutePath) {
                 fileset(dir: zipDir)
             }
+            zipDir.deleteDir()
         }
     }
 

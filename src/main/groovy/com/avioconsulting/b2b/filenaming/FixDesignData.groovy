@@ -14,18 +14,18 @@ class FixDesignData {
      * @param directory - output directory containing all files
      * @return - the new ID of the trading partner
      */
-    String fix(String tradingPartnerFile, File directory) {
-        def xmlFile = new File(directory, tradingPartnerFile)
-        Node rootNode = new XmlParser().parse(xmlFile)
+    String fix(File tradingPartnerFile) {
+        Node rootNode = new XmlParser().parse(tradingPartnerFile)
         def name = rootNode.@name
         def oldId = rootNode.@id as String
         def prefix = oldId.contains('tpa') ? 'tpa' : 'tp'
         def newId = "${prefix}_${name}"
         rootNode.@id = newId
+        def directory = tradingPartnerFile.parentFile
         def newFile = new File(directory, "${newId}.xml")
-        this.logger "Renaming ${xmlFile} to ${newFile} and updating ID..."
-        updateXml(xmlFile, rootNode)
-        xmlFile.renameTo(newFile)
+        this.logger "Renaming ${tradingPartnerFile} to ${newFile} and updating ID..."
+        updateXml(tradingPartnerFile, rootNode)
+        tradingPartnerFile.renameTo(newFile)
         updateReferences(directory, oldId, newId)
         newId
     }

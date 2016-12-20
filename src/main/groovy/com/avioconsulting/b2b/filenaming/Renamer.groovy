@@ -1,7 +1,5 @@
 package com.avioconsulting.b2b.filenaming
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 class Renamer {
     private final FixDesignData fixer
 
@@ -17,5 +15,8 @@ class Renamer {
      * @param directory - contains files
      */
     void fixNames(File directory) {
+        new FileNameFinder().getFileNames(directory.absolutePath, 'tp*.xml').each { file ->
+            this.fixer.fix new File(file)
+        }
     }
 }

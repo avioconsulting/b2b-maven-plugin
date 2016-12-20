@@ -25,15 +25,15 @@ class FixDesignDataTest {
     @Test
     void tradingPartner_fileRenamed() {
         // arrange
-        def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
+        def inputFilename = new File(directory, 'tp_luZRYV-7072537905454701067.xml')
 
         // act
-        def result = fixer.fix inputFilename, directory
+        def result = fixer.fix inputFilename
 
         // assert
         assertThat result,
                    is(equalTo('tp_BradyInc'))
-        assertThat new File(directory, inputFilename).exists(),
+        assertThat inputFilename.exists(),
                    is(equalTo(false))
         def expectedFile = new File(directory, 'tp_BradyInc.xml')
         assertThat expectedFile.exists(),
@@ -43,10 +43,10 @@ class FixDesignDataTest {
     @Test
     void tradingPartner_IdAttributeChanged() {
         // arrange
-        def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
+        def inputFilename = new File(directory, 'tp_luZRYV-7072537905454701067.xml')
 
         // act
-        fixer.fix inputFilename, directory
+        fixer.fix inputFilename
         def expectedFile = new File(directory, 'tp_BradyInc.xml')
         def actualId = new XmlParser().parse(expectedFile).@id
 
@@ -58,10 +58,10 @@ class FixDesignDataTest {
     @Test
     void tradingPartner_othersChanged() {
         // arrange
-        def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
+        def inputFilename = new File(directory, 'tp_luZRYV-7072537905454701067.xml')
 
         // act
-        fixer.fix inputFilename, directory
+        fixer.fix inputFilename
         def expectedRefFiles = [
                 'tpa_Gsf8462216507708172471.xml',
                 'tpa_vkKRnu-1313236717328621662.xml'
@@ -81,15 +81,15 @@ class FixDesignDataTest {
     @Test
     void tradingPartnerAgreement_fileRenamed() {
         // arrange
-        def inputFilename = 'tpa_aSr1674752484585300652.xml'
+        def inputFilename = new File(directory, 'tpa_aSr1674752484585300652.xml')
 
         // act
-        def result = fixer.fix inputFilename, directory
+        def result = fixer.fix inputFilename
 
         // assert
         assertThat result,
                    is(equalTo('tpa_BETTERMMA_999Agreement'))
-        assertThat new File(directory, inputFilename).exists(),
+        assertThat inputFilename.exists(),
                    is(equalTo(false))
         def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
         assertThat expectedFile.exists(),
@@ -99,10 +99,10 @@ class FixDesignDataTest {
     @Test
     void tradingPartnerAgreement_IdAttributeChanged() {
         // arrange
-        def inputFilename = 'tpa_aSr1674752484585300652.xml'
+        def inputFilename = new File(directory, 'tpa_aSr1674752484585300652.xml')
 
         // act
-        fixer.fix inputFilename, directory
+        fixer.fix inputFilename
         def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
         def actualId = new XmlParser().parse(expectedFile).@id
 

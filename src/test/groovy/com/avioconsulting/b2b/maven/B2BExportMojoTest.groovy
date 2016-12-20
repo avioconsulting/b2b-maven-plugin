@@ -79,28 +79,12 @@ class B2BExportMojoTest {
         // arrange
         mojo.doExport = true
         mojo.b2BArtifactType = AbstractB2bMojo.B2BArtifactType.DocumentDefinitions
-        getAntProjectMock(mojo) { t ->
-            def zipDir = new File(baseDirectory, 'b2bzipcontents')
-            def b2bDir = new File(zipDir, 'soa/b2b')
-            b2bDir.mkdirs()
-            def ediDir = new File(b2bDir, 'EDI_X12/v5010/837/837Default')
-            ediDir.mkdirs()
-            FileUtils.touch new File(b2bDir, 'doc_HL7.xml')
-            createTradingPartnerFile 'id1', b2bDir
-            createTradingPartnerAgreementFile 'aid1', b2bDir
-            FileUtils.touch new File(ediDir, 'X12-5010-837.xsd')
-
-            def antBuilder = new AntBuilder()
-            antBuilder.zip(destFile: zipFile.absolutePath) {
-                fileset(dir: zipDir)
-            }
-            zipDir.deleteDir()
-        }
+        SimpleFileStub()
 
         // act
         mojo.execute()
         def files = new FileNameFinder().getFileNames(baseDirectory.absolutePath, '**/*')
-                .collect { f -> f.replace(new File(baseDirectory, 'src/main/resources/b2b').absolutePath+'/', '') }
+                .collect { f -> f.replace(new File(baseDirectory, 'src/main/resources/b2b').absolutePath + '/', '') }
 
         // assert
         assertThat files,
@@ -125,9 +109,15 @@ class B2BExportMojoTest {
     private SimpleFileStub() {
         getAntProjectMock(mojo) { t ->
             def zipDir = new File(baseDirectory, 'b2bzipcontents')
-            def file = new File(zipDir, 'soa/b2b/theFile.xml')
-            file.parentFile.mkdirs()
-            FileUtils.touch file
+            def b2bDir = new File(zipDir, 'soa/b2b')
+            b2bDir.mkdirs()
+            def ediDir = new File(b2bDir, 'EDI_X12/v5010/837/837Default')
+            ediDir.mkdirs()
+            FileUtils.touch new File(b2bDir, 'doc_HL7.xml')
+            createTradingPartnerFile 'id1', b2bDir
+            createTradingPartnerAgreementFile 'aid1', b2bDir
+            FileUtils.touch new File(ediDir, 'X12-5010-837.xsd')
+
             def antBuilder = new AntBuilder()
             antBuilder.zip(destFile: zipFile.absolutePath) {
                 fileset(dir: zipDir)

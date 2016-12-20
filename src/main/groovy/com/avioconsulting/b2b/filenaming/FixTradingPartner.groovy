@@ -23,8 +23,13 @@ class FixTradingPartner {
         rootNode.@id = newId
         def newFile = new File(directory, "${newId}.xml")
         this.logger "Renaming ${xmlFile} to ${newFile} and updating ID..."
-        new XmlNodePrinter(new IndentPrinter(new FileWriter(xmlFile))).print rootNode
+        updateXml(xmlFile, rootNode)
         xmlFile.renameTo(newFile)
+        updateReferences(directory, oldId, newId)
+        name
+    }
+
+    private List<String> updateReferences(File directory, oldId, newId) {
         new FileNameFinder().getFileNames(directory.absolutePath, '*.xml').each { otherFile ->
             def otherFileObj = new File(otherFile)
             def lines = otherFileObj.readLines()
@@ -40,6 +45,9 @@ class FixTradingPartner {
                 otherFileObj.write(newLines.join(System.getProperty('line.separator')))
             }
         }
-        name
+    }
+
+    private updateXml(File xmlFile, Node rootNode) {
+        new XmlNodePrinter(new IndentPrinter(new FileWriter(xmlFile))).print rootNode
     }
 }

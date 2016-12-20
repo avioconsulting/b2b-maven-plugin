@@ -1,0 +1,33 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TradingPartner hosted="false" id="tp_XnfTl1318734747197746601" logoSO="/soa/b2b/seed/defaultSeededTpIcon.png" name="MyCompany" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <Identification id="tpIden_ejWVe6237522730157804743" typeRef="/soa/b2b/types.xml#itype-Name" value="BETTERMMA"/>
+   <Identification id="tpIden_vHHT-1709799739940170337" typeRef="/soa/b2b/types.xml#itype-AS1" value="00"/>
+   <Identification id="tpIden_V5878022975769495520" typeRef="/soa/b2b/types.xml#itype-InterchangeID" value="20488"/>
+   <Identification id="tpIden_P-7272204907515055309" typeRef="/soa/b2b/types.xml#itype-GroupIDQualifier" value="ZZ"/>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_ogQYZn-6486582916691713555" internal="false" listening="false" name="BETTERMMA_IN" responseMode="None" useGenericWSDL="false">
+      <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_IpABUa5195700225005211692">
+         <ParameterValue id="nw_param_val_M1845026492605307489" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
+      </ExchangeProtocolRef>
+      <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_XcFs5711673886709605275" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
+         <ParameterValue id="nw_param_val_kOUWB-2138225363625898941" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="5"/>
+         <ParameterValue id="nw_param_val_H-3218096507877318127" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/ToBETTERMMA"/>
+         <ParameterValue id="nw_param_val_SRvDMan-3218250564258974116" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
+         <ParameterValue id="nw_param_val_WyeqpTi2219767368164697000" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir"/>
+         <ParameterValue id="nw_param_val_RxyqeD-1138231946544895260" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
+         <ParameterValue id="nw_param_val_V-2103932842896219029" parameterRef="/soa/b2b/seed/protocol.xml#file-param-is_binary"/>
+         <ParameterValue id="nw_param_val_nZ-7336270552280586352" parameterRef="/soa/b2b/seed/protocol.xml#file-param-marker"/>
+         <ParameterValue id="nw_param_val_oEob8870500553283919886" parameterRef="/soa/b2b/seed/protocol.xml#file-param-Sequencing" value="false"/>
+         <ParameterValue id="nw_param_val_MJYY-8565860162774161332" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_format"/>
+         <ParameterValue id="nw_param_val_Zwa-4639768650520889309" parameterRef="/soa/b2b/seed/protocol.xml#file-param-directoryname_format"/>
+         <ParameterValue id="nw_param_val_jTgGA-5064290771407903276" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_separator"/>
+         <ParameterValue id="nw_param_val_DP-5955445692196954845" parameterRef="/soa/b2b/seed/protocol.xml#file-param-headerfile_extn"/>
+         <ParameterValue id="nw_param_val_v6947669956279001631" parameterRef="/soa/b2b/seed/protocol.xml#file-param-message_splitter"/>
+         <ParameterValue id="nw_param_val_V4505392253639078671" parameterRef="/soa/b2b/seed/protocol.xml#file-param-tp_profile_name"/>
+      </TransportProtocolRef>
+      <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_K-2724557463091239491" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
+   </DeliveryChannel>
+   <SupportedDocumentDefinition docDefName="837X222A1" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-y-7620837853100445265" id="SUPPORTED_DEFINITION_Ws-2069937257713184343_1" initiator="false"/>
+   <SupportedDocumentDefinition docDefName="277Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="277" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-mM8598771600663088110" id="SUPPORTED_DEFINITION_lnJ7530826914985159708_0" initiator="true"/>
+   <SupportedDocumentDefinition docDefName="999Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="999" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J1584719480914781994" id="SUPPORTED_DEFINITION_jhcCDNs7067479489022055070_0" initiator="true"/>
+   <SupportedDocumentDefinition docDefName="834Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="834" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J-1725108666218186175" id="SUPPORTED_DEFINITION_R-4617229060063198773_0" initiator="true"/>
+</TradingPartner>

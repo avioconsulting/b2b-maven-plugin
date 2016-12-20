@@ -1,0 +1,2 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DocumentProtocol name="Custom" custom="true" implementationClass="oracle.tip.b2b.document.custom.CustomDocumentPlugin" id="doc_Custom" xmlns="http://xmlns.oracle.com/integration/b2b/profile"/>

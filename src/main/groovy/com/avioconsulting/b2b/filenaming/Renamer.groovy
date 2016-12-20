@@ -15,8 +15,13 @@ class Renamer {
      * @param directory - contains files
      */
     void fixNames(File directory) {
+        def usedIds = [:]
         new FileNameFinder().getFileNames(directory.absolutePath, 'tp*.xml').each { file ->
-            this.fixer.fix new File(file)
+            def newId = this.fixer.fix new File(file)
+            if (usedIds.containsKey(newId)) {
+                throw new Exception("While processing file ${file}, 2 ids were the same (${newId})!")
+            }
+            usedIds[newId] = true
         }
     }
 }

@@ -1,12 +1,12 @@
 package com.avioconsulting.b2b.filenaming
 
+import groovy.test.GroovyAssert
 import org.apache.commons.io.FileUtils
 import org.apache.commons.io.FilenameUtils
 import org.junit.Before
 import org.junit.Test
 
-import static junit.framework.TestCase.fail
-import static org.hamcrest.Matchers.hasItems
+import static org.hamcrest.Matchers.*
 import static org.hamcrest.core.IsNot.not
 import static org.junit.Assert.assertThat
 
@@ -45,10 +45,20 @@ class RenamerTest {
     @Test
     void idCollisions() {
         // arrange
+        FileUtils.copyDirectory new File('src/test/resources/sampleB2BFilesCollision'), directory
 
         // act
+        Exception exception = GroovyAssert.shouldFail {
+            renamer.fixNames directory
+        }
 
         // assert
-        fail 'write this'
+        def exceptionMessage = exception.message
+        assertThat exceptionMessage,
+                   is(containsString('While processing file'))
+        assertThat exceptionMessage,
+                   is(containsString('tp_XnfTl1318734747197746601.xml'))
+        assertThat exceptionMessage,
+                   is(containsString('2 ids were the same (tp_MyCompany)!'))
     }
 }

@@ -1,0 +1,40 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DocumentProtocol name="HL7" custom="false" implementationClass="oracle.tip.b2b.document.edi.EDIDocumentPlugin" id="doc_HL7" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <DocumentProtocolVersion id="NewVersion-y7746821985290162417" name="NewVersion">
+      <ParameterValue id="nw_param_val_GOaXO-1707086054247893656" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-Security"/>
+      <ParameterValue id="nw_param_val_sGj7244515825722222762" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-ProcessingID" value="P"/>
+      <ParameterValue id="nw_param_val_kl-3918476670250147421" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-AcceptAcknowledgementType" value="AL"/>
+      <ParameterValue id="nw_param_val_kBfAM4904031616352023425" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-AppAcknowledgementType" value="AL"/>
+      <ParameterValue id="nw_param_val_G5504274313670896368" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-CountryCode" value="US"/>
+      <ParameterValue id="nw_param_val_oeYSBsc3828542546522979917" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-CharacterSet" value="ASCII"/>
+      <ParameterValue id="nw_param_val_j5857338246211276484" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-BatchCreation" value="false"/>
+      <ParameterValue id="nw_param_val_SoNme-3127389430310891304" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-BatchECSFile"/>
+      <ParameterValue id="nw_param_val_D-78996958578942471" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-FileCreation" value="false"/>
+      <ParameterValue id="nw_param_val_W1173966711850943126" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-FileECSFile"/>
+      <ParameterValue id="nw_param_val_u-3358305502157688603" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeID"/>
+      <ParameterValue id="nw_param_val_gBw-2176799581784562040" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeText"/>
+      <ParameterValue id="nw_param_val_guJmn-3819784354351606595" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeSystem"/>
+      <ParameterValue id="nw_param_val_B-7927579647844658419" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeAlternateID"/>
+      <ParameterValue id="nw_param_val_PkY-5668442732286970487" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeAlternateText"/>
+      <ParameterValue id="nw_param_val_k-4935428011665545236" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternatCodeAlternateSystem"/>
+      <ParameterValue id="nw_param_val_ucw2963066523131124440" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionID"/>
+      <ParameterValue id="nw_param_val_GDSJrDZ-6732318352464995365" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionIDText"/>
+      <ParameterValue id="nw_param_val_oZZ-401469665536942302" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionIDSystem"/>
+      <ParameterValue id="nw_param_val_V-2781319326376761399" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionIDAlternateID"/>
+      <ParameterValue id="nw_param_val_E3667729475310800937" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionIDAlternateText"/>
+      <ParameterValue id="nw_param_val_Fm-2095567762051847133" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-InternationalVersionIDAlternateSystem"/>
+      <ParameterValue id="nw_param_val_XubS2266167170720393877" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-ElementDelimiter" value="0x7c"/>
+      <ParameterValue id="nw_param_val_YyOwzY8453302248431357582" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-ReleaseCharacter" value="0x5c"/>
+      <ParameterValue id="nw_param_val_e-4271452216266681894" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-Repeating-Separator" value="0x7e"/>
+      <ParameterValue id="nw_param_val_e-4975016836778769110" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-SegmentDelimiter" value="0x0d"/>
+      <ParameterValue id="nw_param_val_MytxfrL1538501579389362665" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-SubcomponentDelimiter" value="0x26"/>
+      <ParameterValue id="nw_param_val_o-3392987468685473000" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-SubelementDelimiter" value="0x5e"/>
+      <ParameterValue id="nw_param_val_JzPfs-2480888545216047580" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-BatchSecurity"/>
+      <ParameterValue id="nw_param_val_cem-959729634375437407" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-FileSecurity"/>
+      <ParameterValue id="nw_param_val_CLAsGm-1705930783271387997" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-FileDate" value="#SystemDateTime(CCYYMMDDHHMM)#"/>
+      <ParameterValue id="nw_param_val_vHIJAke-6338954271901863821" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-BatchDate" value="#SystemDateTime(CCYYMMDDHHMM)#"/>
+      <ParameterValue id="nw_param_val_CJHp-6787995738101580245" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-AcknowledgementType" value="HL7"/>
+      <ParameterValue id="nw_param_val_iMXm6157380607904025764" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-HL7IgnoreLookUp"/>
+      <ParameterValue id="nw_param_val_Ciq-749489803301132603" parameterRef="/soa/b2b/seed/protocol.xml#hl7-param-HL7AckMode" value="Multiple"/>
+   </DocumentProtocolVersion>
+</DocumentProtocol>

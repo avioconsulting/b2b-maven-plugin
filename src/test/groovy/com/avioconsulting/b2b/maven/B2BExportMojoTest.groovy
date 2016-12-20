@@ -134,6 +134,8 @@ class B2BExportMojoTest {
                            'tp_partner1.xml',
                            'tpa_agree1.xml'
                    ]))
+        assertThat new File(baseDirectory, 'src/main/resources/b2b/EDI_X12').exists(),
+                   is(equalTo(false))
     }
 
     private createTradingPartnerFile(String name, File directory) {

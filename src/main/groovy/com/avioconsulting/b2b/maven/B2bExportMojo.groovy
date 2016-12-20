@@ -50,6 +50,7 @@ class B2bExportMojo extends AbstractB2bMojo {
 
     private void clean(File b2bDir) {
         def filesToRemove
+        def dirsToRemove = []
         def finder = new FileNameFinder()
         def tradingPartnerFiles = finder.getFileNames(b2bDir.absolutePath, tradingPartnerPattern)
         switch (this.b2BArtifactType) {
@@ -67,13 +68,15 @@ class B2bExportMojo extends AbstractB2bMojo {
                     !expectedFiles.any { expFile -> file.endsWith(expFile) }
                 }
                 filesToRemove += otherTradingPartners
+                // trading partners all have files at the root level, get rid of any doc def directories
+                dirsToRemove = b2bDir.listFiles().findAll { file -> file.directory }
+                        .collect { file -> file.absolutePath }
                 break
             default:
                 throw new Exception("Unknown value ${this.b2BArtifactType}!")
         }
 
-        filesToRemove.each { file ->
-            new File(file).delete()
-        }
+        filesToRemove.each { file -> new File(file).delete() }
+        dirsToRemove.each { file -> new File(file).deleteDir() }
     }
 }

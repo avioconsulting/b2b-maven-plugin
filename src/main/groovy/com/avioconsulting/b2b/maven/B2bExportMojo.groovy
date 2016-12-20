@@ -58,12 +58,11 @@ class B2bExportMojo extends AbstractB2bMojo {
                 filesToRemove = tradingPartnerFiles
                 break
             case B2BArtifactTypes.PartnersAndAgreements:
-                if (partners == null || !partners.any() || agreements == null || !agreements.any()) {
-                    throw new Exception('If b2b.artifact.type/PartnersAndAgreements is used, must supply b2b.partners/agreements!')
-                }
+                validate()
 
                 filesToRemove = finder.getFileNames(b2bDir.absolutePath, '**/*', tradingPartnerPattern)
-                def expectedFiles = partners.collect { p -> "tp_${p}.xml" } + agreements.collect { a -> "tpa_${a}.xml" }
+                def expectedFiles = partners.collect { p -> getPartnerFilename(p) } +
+                        agreements.collect { a -> getAgreementFilename(a) }
                 def otherTradingPartners = tradingPartnerFiles.findAll { file ->
                     !expectedFiles.any { expFile -> file.endsWith(expFile) }
                 }

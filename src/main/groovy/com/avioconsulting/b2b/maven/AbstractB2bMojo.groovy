@@ -46,6 +46,14 @@ abstract class AbstractB2bMojo extends AbstractMojo {
         join this.baseDir, 'tmp'
     }
 
+    protected static String getPartnerFilename(name) {
+        "tp_${name}.xml"
+    }
+
+    protected static String getAgreementFilename(name) {
+        "tpa_${name}.xml"
+    }
+
     protected static void runAntTarget(antProject, target) {
         try {
             antProject.fireBuildStarted()
@@ -56,6 +64,16 @@ abstract class AbstractB2bMojo extends AbstractMojo {
         catch (e) {
             antProject.fireBuildFinished e
             throw e
+        }
+    }
+
+    protected void validate() {
+        if (this.b2BArtifactType != B2BArtifactTypes.PartnersAndAgreements) {
+            return
+        }
+
+        if (partners == null || !partners.any() || agreements == null || !agreements.any()) {
+            throw new Exception('If b2b.artifact.type/PartnersAndAgreements is used, must supply b2b.partners/agreements!')
         }
     }
 

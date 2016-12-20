@@ -66,4 +66,24 @@ class B2BImportMojoTest implements MojoAnt {
                            overwrite: true.toString()
                    ]))
     }
+
+    @Test
+    void runs_properties_PartnersAndAgreements() {
+        // arrange
+        mojo.b2BArtifactType = B2BArtifactTypes.PartnersAndAgreements
+        mojo.partners = ['partner1']
+        mojo.agreements = ['agree1']
+        simpleFileStub()
+
+        // act
+        mojo.execute()
+
+        // assert
+        assertThat propsUsed,
+                   is(equalTo([
+                           exportfile: zipFile.absolutePath,
+                           overwrite: false.toString(),
+                           args: 'tp_partner1.xml,tpa_agree1.xml'
+                   ]))
+    }
 }

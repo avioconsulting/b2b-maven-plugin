@@ -1,6 +1,7 @@
 package com.avioconsulting.b2b.maven
 
 import groovy.mock.interceptor.StubFor
+import groovy.test.GroovyAssert
 import org.apache.commons.io.FileUtils
 import org.apache.tools.ant.Project
 import org.junit.Before
@@ -50,6 +51,7 @@ class B2BExportMojoTest {
     void runs_CorrectTarget() {
         // arrange
         mojo.doExport = true
+        mojo.b2BArtifactType = B2BArtifactTypes.DocumentDefinitions
         SimpleFileStub()
 
         // act
@@ -64,6 +66,7 @@ class B2BExportMojoTest {
     void runs_CorrectProperties() {
         // arrange
         mojo.doExport = true
+        mojo.b2BArtifactType = B2BArtifactTypes.DocumentDefinitions
         SimpleFileStub()
 
         // act
@@ -78,7 +81,7 @@ class B2BExportMojoTest {
     void runs_FileStructure_DocumentDef() {
         // arrange
         mojo.doExport = true
-        mojo.b2BArtifactType = AbstractB2bMojo.B2BArtifactType.DocumentDefinitions
+        mojo.b2BArtifactType = B2BArtifactTypes.DocumentDefinitions
         SimpleFileStub()
 
         // act
@@ -94,16 +97,57 @@ class B2BExportMojoTest {
                    ]))
     }
 
-    private createTradingPartnerFile(String id, File directory) {
-        def path = new File(directory, "tp_${id}.xml")
-        path.write("<?xml version = '1.0' encoding = 'UTF-8'?>\n" +
-                           "<TradingPartner hosted=\"true\" id=\"${id}\" logoSO=\"/soa/b2b/seed/defaultSeededHostTpIcon.png\" name=\"${id}\" version=\"12.2.1.1.0\" xmlns=\"http://xmlns.oracle.com/integration/b2b/profile\"/>")
+    @Test
+    void runs_FileStructure_TradingPartners_NoList() {
+        // arrange
+        mojo.doExport = true
+        mojo.b2BArtifactType = B2BArtifactTypes.PartnersAndAgreements
+        SimpleFileStub()
+
+        // act
+        def exception = GroovyAssert.shouldFail {
+            mojo.execute()
+        }
+
+        // assert
+        assertThat exception.message,
+                   is(equalTo('If b2b.artifact.type/PartnersAndAgreements is used, must supply b2b.partners/agreements!'))
     }
 
-    private createTradingPartnerAgreementFile(String id, File directory) {
-        def path = new File(directory, "tpa_${id}.xml")
+    @Test
+    void runs_FileStructure_TradingPartners() {
+        // arrange
+        mojo.doExport = true
+        mojo.b2BArtifactType = B2BArtifactTypes.PartnersAndAgreements
+        mojo.partners = ['partner1']
+        mojo.agreements = ['agree1']
+        SimpleFileStub()
+
+        // act
+        mojo.execute()
+        def files = new FileNameFinder().getFileNames(baseDirectory.absolutePath, '**/*')
+                .collect { f -> f.replace(new File(baseDirectory, 'src/main/resources/b2b').absolutePath + '/', '') }
+
+        // assert
+        assertThat files,
+                   is(equalTo([
+                           'tp_partner1.xml',
+                           'tpa_agree1.xml'
+                   ]))
+    }
+
+    private createTradingPartnerFile(String name, File directory) {
+        def id = "tp_${name}"
+        def path = new File(directory, "${id}.xml")
+        path.write("<?xml version = '1.0' encoding = 'UTF-8'?>\n" +
+                           "<TradingPartner hosted=\"true\" id=\"${id}\" logoSO=\"/soa/b2b/seed/defaultSeededHostTpIcon.png\" name=\"${name}\" version=\"12.2.1.1.0\" xmlns=\"http://xmlns.oracle.com/integration/b2b/profile\"/>")
+    }
+
+    private createTradingPartnerAgreementFile(String name, File directory) {
+        def id = "tpa_${name}"
+        def path = new File(directory, "${id}.xml")
         path.write("<?xml version='1.0' encoding='UTF-8'?>\n" +
-                           "<Agreement agreementId=\"${id}\" id=\"${id}\" name=\"${id}\" xmlns=\"http://xmlns.oracle.com/integration/b2b/profile\"/>")
+                           "<Agreement agreementId=\"${id}\" id=\"${id}\" name=\"${name}\" xmlns=\"http://xmlns.oracle.com/integration/b2b/profile\"/>")
     }
 
     private SimpleFileStub() {
@@ -114,8 +158,10 @@ class B2BExportMojoTest {
             def ediDir = new File(b2bDir, 'EDI_X12/v5010/837/837Default')
             ediDir.mkdirs()
             FileUtils.touch new File(b2bDir, 'doc_HL7.xml')
-            createTradingPartnerFile 'id1', b2bDir
-            createTradingPartnerAgreementFile 'aid1', b2bDir
+            createTradingPartnerFile 'partner1', b2bDir
+            createTradingPartnerFile 'partner2', b2bDir
+            createTradingPartnerAgreementFile 'agree1', b2bDir
+            createTradingPartnerAgreementFile 'agree2', b2bDir
             FileUtils.touch new File(ediDir, 'X12-5010-837.xsd')
 
             def antBuilder = new AntBuilder()

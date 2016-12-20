@@ -4,7 +4,6 @@ import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
 import org.apache.maven.plugins.annotations.Mojo
 import org.apache.maven.plugins.annotations.Parameter
-import org.apache.maven.project.MavenProject
 
 @SuppressWarnings("GroovyUnusedDeclaration")
 @Mojo(name = 'b2bExport')
@@ -19,9 +18,10 @@ class B2bExportMojo extends AbstractB2bMojo {
         }
         this.log.info "Exporting B2B artifacts from server to this project's directory..."
         def antProject = createAntProject()
-        MavenProject mavenProject = this.pluginContext.project
-        def basedir = mavenProject.basedir
-        def tmpDir = new File(basedir, 'tmp')
+        def tmpDir = this.tempDirectory
+        if (tmpDir.exists()) {
+            tmpDir.deleteDir()
+        }
         def zipPath = new File(tmpDir, 'b2bExport.zip')
         antProject.setProperty 'exportfile', zipPath.absolutePath
         runAntTarget antProject, 'b2bexport'
@@ -31,7 +31,7 @@ class B2bExportMojo extends AbstractB2bMojo {
                          dest: tmpDir.absolutePath,
                          overwrite: true
         def b2bPath = join(tmpDir, 'soa', 'b2b')
-        def outputDir = join basedir, 'src', 'main', 'resources', 'b2b'
+        def outputDir = join this.baseDir, 'src', 'main', 'resources', 'b2b'
         if (outputDir.exists()) {
             outputDir.deleteDir()
         }

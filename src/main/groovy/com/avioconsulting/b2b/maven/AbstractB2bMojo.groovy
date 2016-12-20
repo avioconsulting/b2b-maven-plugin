@@ -1,7 +1,9 @@
 package com.avioconsulting.b2b.maven
 
 import org.apache.maven.plugin.AbstractMojo
+import org.apache.maven.plugins.annotations.Component
 import org.apache.maven.plugins.annotations.Parameter
+import org.apache.maven.project.MavenProject
 import org.apache.tools.ant.Project
 import org.apache.tools.ant.ProjectHelper
 
@@ -18,9 +20,20 @@ abstract class AbstractB2bMojo extends AbstractMojo {
     @Parameter(property = 'soa.oracle.home', required = true)
     protected String oracleSoaHome
 
+    @Component
+    protected MavenProject project
+
     protected static File join(File parent, String... parts) {
         def separator = System.getProperty 'file.separator'
         new File(parent, parts.join(separator))
+    }
+
+    protected File getBaseDir() {
+        this.project.basedir
+    }
+
+    protected File getTempDirectory() {
+        join this.baseDir, 'tmp'
     }
 
     protected static void runAntTarget(Project antProject, String target) {

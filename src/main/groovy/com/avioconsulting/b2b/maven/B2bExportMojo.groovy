@@ -32,6 +32,7 @@ class B2bExportMojo extends AbstractB2bMojo {
                          dest: tmpDir.absolutePath,
                          overwrite: true
         def b2bPath = join(tmpDir, 'soa', 'b2b')
+        clean b2bPath
         def outputDir = join this.baseDir, 'src', 'main', 'resources', 'b2b'
         if (outputDir.exists()) {
             outputDir.deleteDir()
@@ -43,5 +44,12 @@ class B2bExportMojo extends AbstractB2bMojo {
         this.log.info 'Fixing names on trading partner/agreement files...'
         def renamer = new Renamer({ str -> this.log.info str })
         renamer.fixNames outputDir
+    }
+
+    private void clean(File b2bDir) {
+        def filesToRemove = new FileNameFinder().getFileNames(b2bDir.absolutePath, '**/tp*.xml')
+        filesToRemove.each { file ->
+            new File(file).delete()
+        }
     }
 }

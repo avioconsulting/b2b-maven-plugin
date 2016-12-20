@@ -19,9 +19,25 @@ class B2BImportMojoTest implements MojoAnt {
     }
 
     @Test
-    void runs_CorrectTarget() {
+    void runs_CorrectTargets_docDefs() {
         // arrange
         mojo.b2BArtifactType = B2BArtifactTypes.DocumentDefinitions
+        simpleFileStub()
+
+        // act
+        mojo.execute()
+
+        // assert
+        assertThat targetsRun,
+                   is(equalTo(['b2bimport']))
+    }
+
+    @Test
+    void runs_CorrectTargets_partners() {
+        // arrange
+        mojo.b2BArtifactType = B2BArtifactTypes.PartnersAndAgreements
+        mojo.partners = ['partner1']
+        mojo.agreements = ['agree1']
         simpleFileStub()
 
         // act
@@ -45,7 +61,7 @@ class B2BImportMojoTest implements MojoAnt {
         assertThat propsUsed,
                    is(equalTo([
                            exportfile: zipFile.absolutePath,
-                           overwrite: false.toString()
+                           overwrite : false.toString()
                    ]))
     }
 
@@ -63,7 +79,7 @@ class B2BImportMojoTest implements MojoAnt {
         assertThat propsUsed,
                    is(equalTo([
                            exportfile: zipFile.absolutePath,
-                           overwrite: true.toString()
+                           overwrite : true.toString()
                    ]))
     }
 
@@ -72,7 +88,7 @@ class B2BImportMojoTest implements MojoAnt {
         // arrange
         mojo.b2BArtifactType = B2BArtifactTypes.PartnersAndAgreements
         mojo.partners = ['partner1']
-        mojo.agreements = ['agree1']
+        mojo.agreements = ['agree1', 'agree2']
         simpleFileStub()
 
         // act
@@ -82,8 +98,9 @@ class B2BImportMojoTest implements MojoAnt {
         assertThat propsUsed,
                    is(equalTo([
                            exportfile: zipFile.absolutePath,
-                           overwrite: false.toString(),
-                           args: 'tp_partner1.xml,tpa_agree1.xml'
+                           overwrite : false.toString(),
+                           args      : 'tp_partner1.xml,tpa_agree1.xml,tpa_agree2.xml',
+                           tpanames  : 'agree1,agree2'
                    ]))
     }
 }

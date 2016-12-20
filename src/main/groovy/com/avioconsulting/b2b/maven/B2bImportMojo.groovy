@@ -28,12 +28,16 @@ class B2bImportMojo extends AbstractB2bMojo {
 
         def ant = { String target -> runAntTarget antProject, target }
         ant 'b2bimport'
-        if (this.b2BArtifactType == B2BArtifactTypes.PartnersAndAgreements) {
-            def partnerFilenames = partners.collect { f -> getPartnerFilename(f) }
-            def agreementFilenames = agreements.collect { f -> getAgreementFilename(f) }
-            antProject.setProperty 'args', (partnerFilenames + agreementFilenames).join(',')
+        // we only deploy agreements and those are easier to form filenames for validation wise
+        if (this.b2BArtifactType != B2BArtifactTypes.PartnersAndAgreements) {
+            return
         }
+
+        def partnerFilenames = partners.collect { f -> getPartnerFilename(f) }
+        def agreementFilenames = agreements.collect { f -> getAgreementFilename(f) }
+        antProject.setProperty 'args', (partnerFilenames + agreementFilenames).join(',')
         ant 'b2bvalidate'
+        antProject.setProperty 'tpanames', agreements.join(',')
         ant 'b2bdeploy'
     }
 

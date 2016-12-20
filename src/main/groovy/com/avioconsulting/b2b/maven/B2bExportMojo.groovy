@@ -1,5 +1,6 @@
 package com.avioconsulting.b2b.maven
 
+import com.avioconsulting.b2b.filenaming.Renamer
 import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
 import org.apache.maven.plugins.annotations.Mojo
@@ -39,5 +40,7 @@ class B2bExportMojo extends AbstractB2bMojo {
         b2bPath.renameTo(outputDir)
         this.log.info 'Removing temporary directory'
         tmpDir.deleteDir()
+        this.log.info 'Fixing names on trading partner/agreement files...'
+        Renamer.fixNames outputDir
     }
 }

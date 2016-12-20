@@ -3,6 +3,12 @@ package com.avioconsulting.b2b.filenaming
 import sun.reflect.generics.reflectiveObjects.NotImplementedException
 
 class Renamer {
+    private final FixDesignData fixer
+
+    Renamer(Closure logger) {
+        this.fixer = new FixDesignData(logger)
+    }
+
     /**
      * Iterate through all of the trading partner/agreement files and fix their names
      *
@@ -10,7 +16,6 @@ class Renamer {
      *
      * @param directory - contains files
      */
-    static void fixNames(File directory) {
-        throw new NotImplementedException()
+    void fixNames(File directory) {
     }
 }

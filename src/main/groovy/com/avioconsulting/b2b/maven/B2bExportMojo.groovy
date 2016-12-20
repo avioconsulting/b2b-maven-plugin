@@ -41,6 +41,7 @@ class B2bExportMojo extends AbstractB2bMojo {
         this.log.info 'Removing temporary directory'
         tmpDir.deleteDir()
         this.log.info 'Fixing names on trading partner/agreement files...'
-        Renamer.fixNames outputDir
+        def renamer = new Renamer({ str -> this.log.info str })
+        renamer.fixNames outputDir
     }
 }

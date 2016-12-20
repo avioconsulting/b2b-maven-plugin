@@ -12,7 +12,7 @@ import static org.junit.Assert.assertThat
 
 class FixDesignDataTest {
     def directory = new File('build/tmp/sampleB2BFiles')
-    def logger = new FixDesignData({ str -> println "From class: ${str}" })
+    def fixer = new FixDesignData({ str -> println "From class: ${str}" })
 
     @Before
     void setupFreshData() {
@@ -28,7 +28,7 @@ class FixDesignDataTest {
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
         // act
-        def result = logger.fix inputFilename, directory
+        def result = fixer.fix inputFilename, directory
 
         // assert
         assertThat result,
@@ -46,7 +46,7 @@ class FixDesignDataTest {
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
         // act
-        logger.fix inputFilename, directory
+        fixer.fix inputFilename, directory
         def expectedFile = new File(directory, 'tp_BradyInc.xml')
         def actualId = new XmlParser().parse(expectedFile).@id
 
@@ -61,7 +61,7 @@ class FixDesignDataTest {
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
         // act
-        logger.fix inputFilename, directory
+        fixer.fix inputFilename, directory
         def expectedRefFiles = [
                 'tpa_Gsf8462216507708172471.xml',
                 'tpa_vkKRnu-1313236717328621662.xml'
@@ -84,7 +84,7 @@ class FixDesignDataTest {
         def inputFilename = 'tpa_aSr1674752484585300652.xml'
 
         // act
-        def result = logger.fix inputFilename, directory
+        def result = fixer.fix inputFilename, directory
 
         // assert
         assertThat result,
@@ -102,7 +102,7 @@ class FixDesignDataTest {
         def inputFilename = 'tpa_aSr1674752484585300652.xml'
 
         // act
-        logger.fix inputFilename, directory
+        fixer.fix inputFilename, directory
         def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
         def actualId = new XmlParser().parse(expectedFile).@id
 

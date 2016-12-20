@@ -36,4 +36,19 @@ class FixTradingPartnerTest {
         assertThat expectedFile.exists(),
                    is(equalTo(true))
     }
+
+    @Test
+    void references_IdAttributeChanged() {
+        // arrange
+        def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
+
+        // act
+        FixTradingPartner.fix inputFilename, directory
+        def expectedFile = new File(directory, 'tp_BradyInc.xml')
+        def actualId = new XmlParser().parse(expectedFile).@id
+
+        // assert
+        assertThat actualId as String,
+                   is(equalTo('tp_BradyInc'))
+    }
 }

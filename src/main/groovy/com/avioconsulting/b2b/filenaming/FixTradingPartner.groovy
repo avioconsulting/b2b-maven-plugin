@@ -10,9 +10,12 @@ class FixTradingPartner {
      */
     static String fix(String tradingPartnerFile, File directory) {
         def xmlFile = new File(directory, tradingPartnerFile)
-        Node parsed = new XmlParser(false, true).parse(xmlFile)
-        def name = parsed.attribute('name')
-        xmlFile.renameTo(new File(directory, "tp_${name}.xml"))
+        Node rootNode = new XmlParser().parse(xmlFile)
+        def name = rootNode.@name
+        def newId = "tp_${name}"
+        rootNode.@id = newId
+        new XmlNodePrinter(new IndentPrinter(new FileWriter(xmlFile))).print rootNode
+        xmlFile.renameTo(new File(directory, "${newId}.xml"))
         name
     }
 }

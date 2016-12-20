@@ -1,0 +1,28 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Agreement agreementId="837Agreement" id="tpa_Gsf8462216507708172471" name="837Agreement" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <SupportedDocumentType docDefName="837Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-nEEx5865990248744593649" id="docdef_zCMpO4807238710463114598">
+      <InitiatingParticipant id="par_DGmrQu7468074779996766515" supportedDocumentDefinitionRef="/soa/b2b/tp_MyCompany.xml#SUPPORTED_DEFINITION_mqGXEj99609024607401157_0" tradingPartnerRef="/soa/b2b/tp_MyCompany.xml#tp_MyCompany">
+         <Identifications>
+            <IdentificationRef id="idn_UCDTu2906889085539514013" identificationRef="/soa/b2b/tp_MyCompany.xml#ID1234" type="Name" value="AVIOConsulting"/>
+         </Identifications>
+         <DeliveryChannels/>
+      </InitiatingParticipant>
+      <RespondingParticipant id="par_yfVvOj-6252737053063483869" supportedDocumentDefinitionRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#SUPPORTED_DEFINITION_gc-5958072838531403949_1" tradingPartnerRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#tp_luZRYV-7072537905454701067">
+         <Identifications>
+            <IdentificationRef id="idn_cJo5959770036650671020" identificationRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#tpIden_VuL-6721251668582648097" type="Name" value="BradyInc"/>
+         </Identifications>
+         <DeliveryChannels>
+            <DeliveryChannelRef deliveryChannelRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#CHANNEL_B-5610087386798342910" id="chnl_c-3609099279207212570"/>
+         </DeliveryChannels>
+      </RespondingParticipant>
+      <AgrDocTypeParameterValues>
+         <ParameterValue id="nw_param_val_ho-4347759118810520831" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-validate" value="false"/>
+         <ParameterValue id="nw_param_val_ht5587064238232808684" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-translate" value="true"/>
+         <ParameterValue id="nw_param_val_pqh-3668511299627265136" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-fa" value="true"/>
+         <ParameterValue id="nw_param_val_YgzLU-5878232038301602088" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAHandledByB2B" value="None"/>
+         <ParameterValue id="nw_param_val_MvnVtJI-8046908774426998796" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryInterval"/>
+         <ParameterValue id="nw_param_val_W-1597897779925644002" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryCount"/>
+         <ParameterValue id="nw_param_val_VtXvW5579859932848348553" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-isSyncRespAgreement"/>
+      </AgrDocTypeParameterValues>
+   </SupportedDocumentType>
+</Agreement>

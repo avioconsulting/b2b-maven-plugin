@@ -1,0 +1,193 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<DocumentProtocol name="EDI_X12" custom="false" implementationClass="oracle.tip.b2b.document.edi.EDIDocumentPlugin" id="doc_EDI_X12" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <DocumentProtocolVersion id="NewVersion-bqtplJe-3717101335029775929" name="v5010">
+      <DocumentType id="NewDocumentType-kF7126505411935125302" name="837">
+         <DocumentDefinition customFileType="false" default="false" definitionFileName="/soa/b2b/EDI_X12/v5010/837/837Default/X12-5010-837.xsd" definitionMO="/soa/b2b/EDI_X12/v5010/837/837Default/X12-5010-837.xsd" id="NewDefinition-nEEx5865990248744593649" modifiedTimestamp="2016-11-28T17:51:46.578-06:00" name="837Default" useDefaultDefinition="true">
+            <ParameterValue id="nw_param_val_D8690235362368785744" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionECSFileBlob" value="/soa/b2b/EDI_X12/v5010/837/837Default/X12-5010-837.ecs"/>
+            <ParameterValue id="nw_param_val_GGib1858736587205187068" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DocumentRoutingID"/>
+            <ParameterValue id="nw_param_val_EWzXOA-6782957281060981505" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName1" value="XPathName1"/>
+            <ParameterValue id="nw_param_val_xZvmoj503538964034699334" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression1"/>
+            <ParameterValue id="nw_param_val_Lhi7490147381941536740" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName2" value="XPathName2"/>
+            <ParameterValue id="nw_param_val_PhXFUrb6044991016941654280" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression2"/>
+            <ParameterValue id="nw_param_val_ppwyIRC-4024764386788020302" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName3" value="XPathName3"/>
+            <ParameterValue id="nw_param_val_qPFMrZ4442315837739133168" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression3"/>
+            <ParameterValue id="nw_param_val_u6393893827264287789" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathName" value="CorrelationFromXPathName"/>
+            <ParameterValue id="nw_param_val_iErNzm-3401270836105128133" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathXPR"/>
+            <ParameterValue id="nw_param_val_BWf-8828986960585884191" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathName" value="CorrelationToXPathName"/>
+            <ParameterValue id="nw_param_val_ZxNTLJn-1642407265331836043" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathXPR"/>
+            <ParameterValue id="nw_param_val_vkr361528359177128811" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Document"/>
+            <ParameterValue id="nw_param_val_kjJwYJP-4362560051071445055" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Action"/>
+            <ParameterValue id="nw_param_val_SQrn5684970873705990794" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XSLTFile"/>
+         </DocumentDefinition>
+         <DocumentDefinition customFileType="false" default="false" definitionFileName="/soa/b2b/EDI_X12/v5010/837/837X222A1/HIPAA-V5010X222A1-837.xsd" definitionMO="/soa/b2b/EDI_X12/v5010/837/837X222A1/HIPAA-V5010X222A1-837.xsd" id="NewDefinition-y-7620837853100445265" modifiedTimestamp="2016-11-29T17:49:44.194-06:00" name="837X222A1" useDefaultDefinition="true">
+            <ParameterValue id="nw_param_val_pNBa3378421268645605602" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionECSFileBlob" value="/soa/b2b/EDI_X12/v5010/837/837X222A1/HIPAA-V5010X222A1-837.ecs"/>
+            <ParameterValue id="nw_param_val_jLHfZ2098608888182256963" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DocumentRoutingID"/>
+            <ParameterValue id="nw_param_val_YH-2210207738914976471" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName1" value="XPathName1"/>
+            <ParameterValue id="nw_param_val_BQDDYL3687443467875700087" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression1"/>
+            <ParameterValue id="nw_param_val_CQHgzW7743198233800027575" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName2" value="XPathName2"/>
+            <ParameterValue id="nw_param_val_qdBRd7683411591631140503" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression2"/>
+            <ParameterValue id="nw_param_val_s-3100013524303321126" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName3" value="XPathName3"/>
+            <ParameterValue id="nw_param_val_qBKbZt-8612571799196180330" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression3"/>
+            <ParameterValue id="nw_param_val_i-2831803419988197373" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathName" value="CorrelationFromXPathName"/>
+            <ParameterValue id="nw_param_val_U-8604053927881253923" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathXPR"/>
+            <ParameterValue id="nw_param_val_e-8439618125349508241" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathName" value="CorrelationToXPathName"/>
+            <ParameterValue id="nw_param_val_C2041737370162650264" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathXPR"/>
+            <ParameterValue id="nw_param_val_g2405935548649895571" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Document"/>
+            <ParameterValue id="nw_param_val_avoUibK7303263007262089724" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Action"/>
+            <ParameterValue id="nw_param_val_nQBFUd6620742110052310466" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XSLTFile"/>
+         </DocumentDefinition>
+         <ParameterValue id="nw_param_val_ejoFeI-3547879323783502857" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupID" value="837"/>
+         <ParameterValue id="nw_param_val_eBY-5008706530789132052" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionID"/>
+         <ParameterValue id="nw_param_val_cLHiBa5177302626792134749" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionImplementationReference"/>
+         <ParameterValue id="nw_param_val_HHCMe701389575459006595" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionPurposeCode"/>
+         <ParameterValue id="nw_param_val_bnJZgLE-6569341571703019563" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction"/>
+         <ParameterValue id="nw_param_val_C-6177623445543006997" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction-Version"/>
+         <ParameterValue id="nw_param_val_pvk-499287748380217877" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAOnError" value="false"/>
+         <ParameterValue id="nw_param_val_ae-5149274072082096535" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName1"/>
+         <ParameterValue id="nw_param_val_uxvEITG-4643597658573925744" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName2"/>
+         <ParameterValue id="nw_param_val_wHFCurn-4957721174576536498" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName3"/>
+         <ParameterValue id="nw_param_val_X5188514423815573928" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype1" value="Default"/>
+         <ParameterValue id="nw_param_val_dzCds-2921884164034049841" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype2" value="Default"/>
+         <ParameterValue id="nw_param_val_y6071346242701536354" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype3" value="Default"/>
+         <ParameterValue id="nw_param_val_ZKJG1467135330456723619" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype4" value="Default"/>
+         <ParameterValue id="nw_param_val_gMrwGPX-1960483412086558315" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype5" value="Default"/>
+         <ParameterValue id="nw_param_val_I2712002373418604584" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype6" value="Default"/>
+         <ParameterValue id="nw_param_val_IER-1549517556666154286" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype7" value="Default"/>
+      </DocumentType>
+      <DocumentType id="NewDocumentType-HKjqzDQ-872617936535395377" name="277">
+         <DocumentDefinition customFileType="false" default="false" definitionFileName="/soa/b2b/EDI_X12/v5010/277/277Default/X12-5010-277.xsd" definitionMO="/soa/b2b/EDI_X12/v5010/277/277Default/X12-5010-277.xsd" id="NewDefinition-mM8598771600663088110" modifiedTimestamp="2016-11-28T17:54:06.652-06:00" name="277Default" useDefaultDefinition="true">
+            <ParameterValue id="nw_param_val_ZhejYL2709377512076862336_1480377246658" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionECSFileBlob" value="/soa/b2b/EDI_X12/v5010/277/277Default/X12-5010-277.ecs"/>
+            <ParameterValue id="nw_param_val_uejjVSF-6161423209581961108" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DocumentRoutingID"/>
+            <ParameterValue id="nw_param_val_S7571256017195734779" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName1" value="XPathName1"/>
+            <ParameterValue id="nw_param_val_aIHReJS-2871081901581206339" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression1"/>
+            <ParameterValue id="nw_param_val_eAGTxf8550361026392079251" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName2" value="XPathName2"/>
+            <ParameterValue id="nw_param_val_wI-5097077060584084200" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression2"/>
+            <ParameterValue id="nw_param_val_Q-4127641922379649187" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName3" value="XPathName3"/>
+            <ParameterValue id="nw_param_val_Y1295429365063073902" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression3"/>
+            <ParameterValue id="nw_param_val_JLY-5855196649488853719" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathName" value="CorrelationFromXPathName"/>
+            <ParameterValue id="nw_param_val_lgpu-5195966142951962719" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathXPR"/>
+            <ParameterValue id="nw_param_val_TLzqd-3771920992288613741" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathName" value="CorrelationToXPathName"/>
+            <ParameterValue id="nw_param_val_XvFXP8045898687096350416" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathXPR"/>
+            <ParameterValue id="nw_param_val_yE4322333567137317969" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Document"/>
+            <ParameterValue id="nw_param_val_rm-7279966510422063519" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Action"/>
+            <ParameterValue id="nw_param_val_QdZ1084549818921198967" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XSLTFile"/>
+         </DocumentDefinition>
+         <ParameterValue id="nw_param_val_RK-608773421037242954" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupID" value="277"/>
+         <ParameterValue id="nw_param_val_fuccomc-3853402710870338052" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionID"/>
+         <ParameterValue id="nw_param_val_hhFOK7065569481007425032" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionImplementationReference"/>
+         <ParameterValue id="nw_param_val_YyhQkz-1781710072269789096" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionPurposeCode"/>
+         <ParameterValue id="nw_param_val_gCESVER3358884648696578229" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction"/>
+         <ParameterValue id="nw_param_val_vfYlVQx-8116347094523602144" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction-Version"/>
+         <ParameterValue id="nw_param_val_WK-6943147931439834723" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAOnError" value="false"/>
+         <ParameterValue id="nw_param_val_W6380944004342091223" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName1"/>
+         <ParameterValue id="nw_param_val_RIZpZYa-319265884435032965" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName2"/>
+         <ParameterValue id="nw_param_val_n51515421783261365" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName3"/>
+         <ParameterValue id="nw_param_val_LxnhB-7423632156724475284" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype1" value="Default"/>
+         <ParameterValue id="nw_param_val_wc-690393719926022373" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype2" value="Default"/>
+         <ParameterValue id="nw_param_val_i2016434165466192759" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype3" value="Default"/>
+         <ParameterValue id="nw_param_val_dqSc-2257644240043350254" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype4" value="Default"/>
+         <ParameterValue id="nw_param_val_BvRvRF-5099023483044422103" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype5" value="Default"/>
+         <ParameterValue id="nw_param_val_ChF9102454033776625697" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype6" value="Default"/>
+         <ParameterValue id="nw_param_val_KSePRc7675846953068456804" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype7" value="Default"/>
+      </DocumentType>
+      <DocumentType id="NewDocumentType-pOa-9035780587698197542" name="999">
+         <DocumentDefinition customFileType="false" default="false" definitionFileName="/soa/b2b/EDI_X12/v5010/999/999Default/X12-5010-999.xsd" definitionMO="/soa/b2b/EDI_X12/v5010/999/999Default/X12-5010-999.xsd" id="NewDefinition-J1584719480914781994" modifiedTimestamp="2016-11-28T17:54:59.312-06:00" name="999Default" useDefaultDefinition="true">
+            <ParameterValue id="nw_param_val_AxTGE5950274580854268904" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionECSFileBlob" value="/soa/b2b/EDI_X12/v5010/999/999Default/X12-5010-999.ecs"/>
+            <ParameterValue id="nw_param_val_AQkIDaA8675072373085658135" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DocumentRoutingID"/>
+            <ParameterValue id="nw_param_val_ZiJoqH-3982517207447935011" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName1" value="XPathName1"/>
+            <ParameterValue id="nw_param_val_dMwmY688957656842976608" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression1"/>
+            <ParameterValue id="nw_param_val_n4635183091399209661" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName2" value="XPathName2"/>
+            <ParameterValue id="nw_param_val_PAsiXtE-75737381944871334" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression2"/>
+            <ParameterValue id="nw_param_val_NJEsIv-3636813690802826196" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName3" value="XPathName3"/>
+            <ParameterValue id="nw_param_val_A8118761963603682007" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression3"/>
+            <ParameterValue id="nw_param_val_Kfe-3835988103544257220" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathName" value="CorrelationFromXPathName"/>
+            <ParameterValue id="nw_param_val_ckcmvH7045221542655237426" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathXPR"/>
+            <ParameterValue id="nw_param_val_j1428472556121071739" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathName" value="CorrelationToXPathName"/>
+            <ParameterValue id="nw_param_val_pBHDzJc2904579151569584991" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathXPR"/>
+            <ParameterValue id="nw_param_val_wxgNdP1966457926227043143" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Document"/>
+            <ParameterValue id="nw_param_val_FHbIzie-5171213221981239501" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Action"/>
+            <ParameterValue id="nw_param_val_Pd-8319595154197896682" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XSLTFile"/>
+         </DocumentDefinition>
+         <ParameterValue id="nw_param_val_hdLfLEe3063527375156776819" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupID" value="999"/>
+         <ParameterValue id="nw_param_val_iVqgcn5321573619549376960" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionID"/>
+         <ParameterValue id="nw_param_val_Ytqna-7940634041142970921" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionImplementationReference"/>
+         <ParameterValue id="nw_param_val_nDLd294340243240989034" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionPurposeCode"/>
+         <ParameterValue id="nw_param_val_yRyIFCc7922838790084140533" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction"/>
+         <ParameterValue id="nw_param_val_V3097670290665872589" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction-Version"/>
+         <ParameterValue id="nw_param_val_fGBSdNg6382315471824604126" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAOnError" value="false"/>
+         <ParameterValue id="nw_param_val_u-5751785298686137025" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName1"/>
+         <ParameterValue id="nw_param_val_EkPIAo-8894838561848961021" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName2"/>
+         <ParameterValue id="nw_param_val_V2070069236340444243" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName3"/>
+         <ParameterValue id="nw_param_val_BjLwAkv1792108301571592867" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype1" value="Default"/>
+         <ParameterValue id="nw_param_val_shf-1550524595046852145" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype2" value="Default"/>
+         <ParameterValue id="nw_param_val_ofYLsxm3659110632986655468" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype3" value="Default"/>
+         <ParameterValue id="nw_param_val_hWQyaYA-2267294425039205237" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype4" value="Default"/>
+         <ParameterValue id="nw_param_val_hyry-5446995919588037115" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype5" value="Default"/>
+         <ParameterValue id="nw_param_val_buTKFpS8636702526520240814" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype6" value="Default"/>
+         <ParameterValue id="nw_param_val_Q-8996333176189185518" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype7" value="Default"/>
+      </DocumentType>
+      <DocumentType id="NewDocumentType-Kjt-6587535915832814392" name="834">
+         <DocumentDefinition customFileType="false" default="false" definitionFileName="/soa/b2b/EDI_X12/v5010/834/834Default/X12-5010-834.xsd" definitionMO="/soa/b2b/EDI_X12/v5010/834/834Default/X12-5010-834.xsd" id="NewDefinition-J-1725108666218186175" modifiedTimestamp="2016-12-06T14:13:00.101-06:00" name="834Default" useDefaultDefinition="true">
+            <ParameterValue id="nw_param_val_z-225383929306846248" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionECSFileBlob" value="/soa/b2b/EDI_X12/v5010/834/834Default/X12-5010-834.ecs"/>
+            <ParameterValue id="nw_param_val_KQHDs-7106271842641147088" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DocumentRoutingID"/>
+            <ParameterValue id="nw_param_val_TGOz-1936295565460929358" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName1" value="XPathName1"/>
+            <ParameterValue id="nw_param_val_VhPgV5402157347719398071" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression1"/>
+            <ParameterValue id="nw_param_val_jACjD-7225283901315843657" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName2" value="XPathName2"/>
+            <ParameterValue id="nw_param_val_MwjMz7390756244394424986" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression2"/>
+            <ParameterValue id="nw_param_val_BpCo-742335370029901663" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathName3" value="XPathName3"/>
+            <ParameterValue id="nw_param_val_XIavI-3347058475444660507" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XPathExpression3"/>
+            <ParameterValue id="nw_param_val_nk6696746452421479660" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathName" value="CorrelationFromXPathName"/>
+            <ParameterValue id="nw_param_val_MCBeup-5339965188903228651" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationFromXPathXPR"/>
+            <ParameterValue id="nw_param_val_qCuRAKm-758443560335010298" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathName" value="CorrelationToXPathName"/>
+            <ParameterValue id="nw_param_val_VlvuZ-6868893849189008853" parameterRef="/soa/b2b/seed/protocol.xml#common-param-CorrelationToXPathXPR"/>
+            <ParameterValue id="nw_param_val_tDY1482949315307867625" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Document"/>
+            <ParameterValue id="nw_param_val_wyspF896477448498356689" parameterRef="/soa/b2b/seed/protocol.xml#common-param-Action"/>
+            <ParameterValue id="nw_param_val_CPd1048305805945547788" parameterRef="/soa/b2b/seed/protocol.xml#common-param-XSLTFile"/>
+         </DocumentDefinition>
+         <ParameterValue id="nw_param_val_A-8080246192394452414" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupID" value="834"/>
+         <ParameterValue id="nw_param_val_bkprrlm-994519569377582922" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionID"/>
+         <ParameterValue id="nw_param_val_M-8896683098333372912" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionImplementationReference"/>
+         <ParameterValue id="nw_param_val_xWNSOzq-5077282653131321589" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-TransactionPurposeCode"/>
+         <ParameterValue id="nw_param_val_Fv2298774687180525225" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction"/>
+         <ParameterValue id="nw_param_val_bLQmO-5779718890568336380" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Acknowledge-Transaction-Version"/>
+         <ParameterValue id="nw_param_val_ZLO-7526323853768857949" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAOnError" value="false"/>
+         <ParameterValue id="nw_param_val_VtTi-1507900354063309954" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName1"/>
+         <ParameterValue id="nw_param_val_b-8251555659898593033" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName2"/>
+         <ParameterValue id="nw_param_val_o-8885112675753491057" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DuplicateTransactionXPathName3"/>
+         <ParameterValue id="nw_param_val_xHdyc2637767156324475002" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype1" value="Default"/>
+         <ParameterValue id="nw_param_val_fA-2431608099729299936" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype2" value="Default"/>
+         <ParameterValue id="nw_param_val_CT-8918570574058076997" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype3" value="Default"/>
+         <ParameterValue id="nw_param_val_nsZZPB8127002232850824615" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype4" value="Default"/>
+         <ParameterValue id="nw_param_val_e4820122219953688581" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype5" value="Default"/>
+         <ParameterValue id="nw_param_val_J6975313275076185829" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype6" value="Default"/>
+         <ParameterValue id="nw_param_val_OWG-2216640933249072077" parameterRef="/soa/b2b/seed/protocol.xml#hipaa-param-sniptype7" value="Default"/>
+      </DocumentType>
+      <ParameterValue id="nw_param_val_FsxheD-4849183451581835659" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeAuthorizationInfoQual" value="00"/>
+      <ParameterValue id="nw_param_val_JwCYJt-5454650023223976443" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeAuthorizationInfo"/>
+      <ParameterValue id="nw_param_val_THd3195235715935871126" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeSecurityInfoQual" value="00"/>
+      <ParameterValue id="nw_param_val_MdoNr-2273472657797035631" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeSecurityInfo"/>
+      <ParameterValue id="nw_param_val_b-2158207263871286715" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeDate" value="#SystemDate(YYMMDD)#"/>
+      <ParameterValue id="nw_param_val_WQJA1549513582188331279" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeTime" value="#SystemTime(HHMM)#"/>
+      <ParameterValue id="nw_param_val_TWgkiWZ3752463956081685424" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeControlStandard_RepeatingSeparator" value="^"/>
+      <ParameterValue id="nw_param_val_satdR-5175533223763587843" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeControlVersion" value="00501"/>
+      <ParameterValue id="nw_param_val_ob623506594310646423" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeAckRequested" value="0"/>
+      <ParameterValue id="nw_param_val_TON5798991292335245170" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-AcknowledgementOption" value="Always"/>
+      <ParameterValue id="nw_param_val_c5255347233178821372" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeUsageIndicator" value="P"/>
+      <ParameterValue id="nw_param_val_B5521919949674897798" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-InterchangeECSFileBlob"/>
+      <ParameterValue id="nw_param_val_Cm2789575681106888105" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-AcknowledgementType" value="997"/>
+      <ParameterValue id="nw_param_val_L2963390712450321791" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-Standard" value="X12"/>
+      <ParameterValue id="nw_param_val_YrzCL-129743905890058479" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupDate" value="#SystemDate(CCYYMMDD)#"/>
+      <ParameterValue id="nw_param_val_L8269687972362380463" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupTime" value="#SystemTime(HHMM)#"/>
+      <ParameterValue id="nw_param_val_j-2321157968083793718" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupAgencyCode" value="X"/>
+      <ParameterValue id="nw_param_val_hKd6569734114702804747" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupVersionNumber" value="005010X222A1"/>
+      <ParameterValue id="nw_param_val_Y1191966469593380389" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-GroupECSFileBlob"/>
+      <ParameterValue id="nw_param_val_kxRqnX102518520515156427" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-SegmentDelimiter" value="0x7e"/>
+      <ParameterValue id="nw_param_val_pQLFX-5183030379293258661" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-ElementDelimiter" value="0x2a"/>
+      <ParameterValue id="nw_param_val_xdL2269701892416460820" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-SubelementDelimiter" value="0x5c"/>
+      <ParameterValue id="nw_param_val_lpEE-3604701838425941291" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-DecimalSeparator" value="0x2e"/>
+      <ParameterValue id="nw_param_val_JLPxms-5293222304460059746" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-ReplacementChar" value="0x7c"/>
+      <ParameterValue id="nw_param_val_D241097421707699643" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-RepeatingSeparator" value="0x5e"/>
+      <ParameterValue id="nw_param_val_gfbQBAf-4443498679850930314" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-CheckDuplicateControlNum" value="false"/>
+      <ParameterValue id="nw_param_val_cjZegiO860338861259976751" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-X12IgnoreLookUp"/>
+   </DocumentProtocolVersion>
+</DocumentProtocol>

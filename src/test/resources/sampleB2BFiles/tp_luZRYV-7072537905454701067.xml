@@ -1,0 +1,31 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TradingPartner hosted="false" id="tp_luZRYV-7072537905454701067" logoSO="/soa/b2b/seed/defaultSeededTpIcon.png" name="BradyInc" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <Identification id="tpIden_VuL-6721251668582648097" typeRef="/soa/b2b/types.xml#itype-Name" value="BradyInc"/>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_B-5610087386798342910" internal="false" listening="false" name="ToTP" responseMode="None" useGenericWSDL="false">
+      <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_oSyfxS-287060828544472141">
+         <ParameterValue id="nw_param_val_P198126825277971404" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel"/>
+      </ExchangeProtocolRef>
+      <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_QudQVvb3233105147389151181" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
+         <ParameterValue id="nw_param_val_Lm8199537297186113678" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="5"/>
+         <ParameterValue id="nw_param_val_kbkuySM5965052028391357796" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/ToTP"/>
+         <ParameterValue id="nw_param_val_WzLhjb-3779821988533198519" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
+         <ParameterValue id="nw_param_val_XtnUHuL-6662013733036574672" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir"/>
+         <ParameterValue id="nw_param_val_sqbM5563535918413376318" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
+         <ParameterValue id="nw_param_val_AeN-381744451285546758" parameterRef="/soa/b2b/seed/protocol.xml#file-param-is_binary"/>
+         <ParameterValue id="nw_param_val_ZDT5617649700585025921" parameterRef="/soa/b2b/seed/protocol.xml#file-param-marker"/>
+         <ParameterValue id="nw_param_val_Gz-1387708218645802498" parameterRef="/soa/b2b/seed/protocol.xml#file-param-Sequencing" value="false"/>
+         <ParameterValue id="nw_param_val_SLMg9094916134495875393" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_format"/>
+         <ParameterValue id="nw_param_val_yjOSha8107233577076092842" parameterRef="/soa/b2b/seed/protocol.xml#file-param-directoryname_format"/>
+         <ParameterValue id="nw_param_val_rSups-8163916438764308591" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_separator"/>
+         <ParameterValue id="nw_param_val_X-3945658002186380016" parameterRef="/soa/b2b/seed/protocol.xml#file-param-headerfile_extn"/>
+         <ParameterValue id="nw_param_val_qgQp-8088220430589775682" parameterRef="/soa/b2b/seed/protocol.xml#file-param-message_splitter"/>
+         <ParameterValue id="nw_param_val_lp-367091943082907314" parameterRef="/soa/b2b/seed/protocol.xml#file-param-tp_profile_name"/>
+      </TransportProtocolRef>
+      <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_si-611891517526447749" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
+   </DeliveryChannel>
+   <SupportedDocumentDefinition docDefName="837Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-nEEx5865990248744593649" id="SUPPORTED_DEFINITION_gc-5958072838531403949_1" initiator="false"/>
+   <SupportedDocumentDefinition docDefName="999Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="999" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J1584719480914781994" id="SUPPORTED_DEFINITION_dUnQBy-8092954551944950788_0" initiator="true"/>
+   <Contacts>
+      <ContactInfo contactTypeRef="/soa/b2b/types.xml#ctype-ContactName" id="CONTACT_ctype-ContactName_vFDSQmy1387574033190916709" value="Brady Of Course"/>
+   </Contacts>
+</TradingPartner>

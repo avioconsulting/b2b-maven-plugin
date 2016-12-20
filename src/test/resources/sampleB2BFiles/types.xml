@@ -1,0 +1,46 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Types version="12.2.1.1.0" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <IdentificationTypes>
+      <IdentificationType name="Name" nameType="true" exchangeIdentifier="true" id="itype-Name"/>
+      <IdentificationType name="Generic Identifier" nameType="false" exchangeIdentifier="true" id="itype-Generic"/>
+      <IdentificationType name="DUNS" nameType="false" exchangeIdentifier="true" id="itype-DUNS"/>
+      <IdentificationType name="ebMS Identifier" nameType="false" exchangeIdentifier="true" id="itype-ebMS"/>
+      <IdentificationType name="AS2 Identifier" nameType="false" exchangeIdentifier="true" id="itype-AS2"/>
+      <IdentificationType name="MLLP ID" nameType="false" exchangeIdentifier="true" id="itype-MLLP"/>
+      <IdentificationType name="AS1 Identifier" nameType="false" exchangeIdentifier="true" id="itype-AS1"/>
+      <IdentificationType name="EDI Interchange ID" nameType="false" id="itype-InterchangeID"/>
+      <IdentificationType name="EDI Interchange ID Qualifier" nameType="false" id="itype-InterchangeIDQualifier"/>
+      <IdentificationType name="EDI Group ID" nameType="false" id="itype-GroupID"/>
+      <IdentificationType name="EDI Interchange Internal ID" nameType="false" id="itype-InterchangeInternalID"/>
+      <IdentificationType name="EDI Interchange Internal Sub ID" nameType="false" id="itype-InterchangeInternalSubID"/>
+      <IdentificationType name="EDI Group ID Qualifier" nameType="false" id="itype-GroupIDQualifier"/>
+      <IdentificationType name="HL7 Message Application ID" nameType="false" id="itype-Message-ApplicationID"/>
+      <IdentificationType name="HL7 Message Application Universal ID" nameType="false" id="itype-Message-ApplicationUniversalID"/>
+      <IdentificationType name="HL7 Message Application Universal ID Type" nameType="false" id="itype-Message-ApplicationUniversalIDType"/>
+      <IdentificationType name="HL7 Message Facility ID" nameType="false" id="itype-Message-FacilityID"/>
+      <IdentificationType name="HL7 Message Facility Universal ID" nameType="false" id="itype-Message-FacilityUniversalID"/>
+      <IdentificationType name="HL7 Message Facility Universal ID Type" nameType="false" id="itype-Message-FacilityUniversalIDType"/>
+      <IdentificationType name="HL7 Batch Application ID" nameType="false" id="itype-Batch-ApplicationID"/>
+      <IdentificationType name="HL7 Batch Application Universal ID" nameType="false" id="itype-Batch-ApplicationUniversalID"/>
+      <IdentificationType name="HL7 Batch Application Universal ID Type" nameType="false" id="itype-Batch-ApplicationUniversalIDType"/>
+      <IdentificationType name="HL7 Batch Facility ID" nameType="false" id="itype-Batch-FacilityID"/>
+      <IdentificationType name="HL7 Batch Facility Universal ID" nameType="false" id="itype-Batch-FacilityUniversalID"/>
+      <IdentificationType name="HL7 Batch Facility Universal ID Type" nameType="false" id="itype-Batch-FacilityUniversalIDType"/>
+      <IdentificationType name="HL7 File Application ID" nameType="false" id="itype-File-ApplicationID"/>
+      <IdentificationType name="HL7 File Application Universal ID" nameType="false" id="itype-File-ApplicationUniversalID"/>
+      <IdentificationType name="HL7 File Application Universal ID Type" nameType="false" id="itype-File-ApplicationUniversalIDType"/>
+      <IdentificationType name="HL7 File Facility ID" nameType="false" id="itype-File-FacilityID"/>
+      <IdentificationType name="HL7 File Facility Universal ID" nameType="false" id="itype-File-FacilityUniversalID"/>
+      <IdentificationType name="HL7 File Facility Universal ID Type" nameType="false" id="itype-File-FacilityUniversalIDType"/>
+      <IdentificationType name="TRADACOMS Name" nameType="false" id="itype-TradacomsName"/>
+      <IdentificationType name="TRADACOMS Code" nameType="false" id="itype-TradacomsCode"/>
+      <IdentificationType name="Regular Expression" nameType="false" id="itype-RegEx"/>
+   </IdentificationTypes>
+   <ContactTypes>
+      <ContactType name="Contact Name" description="Contact Name" id="ctype-ContactName"/>
+      <ContactType name="Phone" description="Phone Number" id="ctype-Phone"/>
+      <ContactType name="Email" notifyType="true" description="Email Address" id="ctype-Email"/>
+      <ContactType name="Fax" description="Fax Number" id="ctype-Fax"/>
+      <ContactType name="SMS" notifyType="true" description="SMS Number" id="ctype-SMS"/>
+   </ContactTypes>
+</Types>

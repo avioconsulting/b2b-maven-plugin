@@ -1,0 +1,115 @@
+<?xml version = '1.0' encoding = 'UTF-8'?>
+<TradingPartner hosted="true" id="tp_MyCompany" logoSO="/soa/b2b/seed/defaultSeededHostTpIcon.png" name="AVIOConsulting" version="12.2.1.1.0" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <Identification id="ID1234" typeRef="/soa/b2b/types.xml#itype-Name" value="AVIOConsulting"/>
+   <Identification id="tpIden_JyOs1278159136548540063" typeRef="/soa/b2b/types.xml#itype-GroupID" value="301438"/>
+   <Identification id="tpIden_s-5566992466383120391" typeRef="/soa/b2b/types.xml#itype-GroupIDQualifier" value="ZZ"/>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_KoYkjGW-979314074597956684" internal="true" listening="false" name="FromAVIO" responseMode="None" useGenericWSDL="false">
+      <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_wxCG1968308233782008199">
+         <ParameterValue id="nw_param_val_mVf-2091754707663498293" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel"/>
+      </ExchangeProtocolRef>
+      <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_LQw-403179834597250683" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
+         <ParameterValue id="nw_param_val_vJtQCW4633349547859843567" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="5"/>
+         <ParameterValue id="nw_param_val_U835907216971370460" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/ToAVIO"/>
+         <ParameterValue id="nw_param_val_O-397710836820275964" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
+         <ParameterValue id="nw_param_val_KocgX-3032303156048286241" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir"/>
+         <ParameterValue id="nw_param_val_HhAXVUI-2689113530394448771" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
+         <ParameterValue id="nw_param_val_J-6268882742505605619" parameterRef="/soa/b2b/seed/protocol.xml#file-param-is_binary"/>
+         <ParameterValue id="nw_param_val_H-2055220558641179470" parameterRef="/soa/b2b/seed/protocol.xml#file-param-marker"/>
+         <ParameterValue id="nw_param_val_uydN-7731167591082975355" parameterRef="/soa/b2b/seed/protocol.xml#file-param-Sequencing" value="false"/>
+         <ParameterValue id="nw_param_val_x9038626839333539128" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_format" value="%FROM_PARTY%_%TO_PARTY%_*.999"/>
+         <ParameterValue id="nw_param_val_zZJdKcj6032576870875507808" parameterRef="/soa/b2b/seed/protocol.xml#file-param-directoryname_format"/>
+         <ParameterValue id="nw_param_val_llXesTC1077360243692691210" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_separator"/>
+         <ParameterValue id="nw_param_val_fNwIvQy7829876704852254840" parameterRef="/soa/b2b/seed/protocol.xml#file-param-headerfile_extn"/>
+         <ParameterValue id="nw_param_val_WEghdrs-6323290138029602408" parameterRef="/soa/b2b/seed/protocol.xml#file-param-message_splitter"/>
+         <ParameterValue id="nw_param_val_w257808155300887063" parameterRef="/soa/b2b/seed/protocol.xml#file-param-tp_profile_name"/>
+      </TransportProtocolRef>
+      <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_CDzKzev7245457546811583072" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
+   </DeliveryChannel>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-6011221507416030964" internal="false" listening="true" name="BETTERMMA" responseMode="None" useGenericWSDL="false">
+      <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_gWj5750328934174791020">
+         <ParameterValue id="nw_param_val_CYbPX6673020420688649315" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
+      </ExchangeProtocolRef>
+      <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_TbX959635220387258673" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
+         <ParameterValue id="nw_param_val_kqBK503522427926111967" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="3"/>
+         <ParameterValue id="nw_param_val_e9087375918347204323" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/BETTERMMA"/>
+         <ParameterValue id="nw_param_val_eCDoNi-1288407773805794293" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
+         <ParameterValue id="nw_param_val_v8440577267328431506" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir" value="/home/oracle/Channels/Archive"/>
+         <ParameterValue id="nw_param_val_cnxk-5523163238874910922" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
+         <ParameterValue id="nw_param_val_mR-2220287711501254262" parameterRef="/soa/b2b/seed/protocol.xml#file-param-is_binary"/>
+         <ParameterValue id="nw_param_val_cAnhC5148100040905995266" parameterRef="/soa/b2b/seed/protocol.xml#file-param-marker"/>
+         <ParameterValue id="nw_param_val_KMuazGx9122131674380336199" parameterRef="/soa/b2b/seed/protocol.xml#file-param-Sequencing" value="false"/>
+         <ParameterValue id="nw_param_val_A4034172865365484776" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_format"/>
+         <ParameterValue id="nw_param_val_DRevrb-5693036624036305518" parameterRef="/soa/b2b/seed/protocol.xml#file-param-directoryname_format" value="/home/oracle/Channels/%FROM_PARTY%"/>
+         <ParameterValue id="nw_param_val_pcxRKNU3284069581475119422" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_separator"/>
+         <ParameterValue id="nw_param_val_xZo-2713598789086890426" parameterRef="/soa/b2b/seed/protocol.xml#file-param-headerfile_extn"/>
+         <ParameterValue id="nw_param_val_ExYaZ4726245765057736011" parameterRef="/soa/b2b/seed/protocol.xml#file-param-message_splitter"/>
+         <ParameterValue id="nw_param_val_T7487095290285543367" parameterRef="/soa/b2b/seed/protocol.xml#file-param-tp_profile_name"/>
+      </TransportProtocolRef>
+      <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_nIbdU1246452032778569159" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
+   </DeliveryChannel>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_DxvjbPJ1616626127556501601" internal="true" listening="false" name="Demo_Channel" responseMode="None" useGenericWSDL="false">
+      <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_Fv6485038530230241727">
+         <ParameterValue id="nw_param_val_jxH6370075979371687631" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
+      </ExchangeProtocolRef>
+      <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_sRx-9125440772827028307" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
+         <ParameterValue id="nw_param_val_P6387341273695740366" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="5"/>
+         <ParameterValue id="nw_param_val_vwNjBuV2570093080727126112" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/Demo"/>
+         <ParameterValue id="nw_param_val_mOE1383428028412360819" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
+         <ParameterValue id="nw_param_val_h4650735590831457266" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir"/>
+         <ParameterValue id="nw_param_val_YwObf-3656697396992983749" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
+         <ParameterValue id="nw_param_val_CMCHS-4271668829446040818" parameterRef="/soa/b2b/seed/protocol.xml#file-param-is_binary"/>
+         <ParameterValue id="nw_param_val_yoUCX-8803297706006791734" parameterRef="/soa/b2b/seed/protocol.xml#file-param-marker"/>
+         <ParameterValue id="nw_param_val_mp-4719859660168352085" parameterRef="/soa/b2b/seed/protocol.xml#file-param-Sequencing" value="false"/>
+         <ParameterValue id="nw_param_val_ou-1899380652651770805" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_format" value="*.834"/>
+         <ParameterValue id="nw_param_val_M1590095116804324150" parameterRef="/soa/b2b/seed/protocol.xml#file-param-directoryname_format"/>
+         <ParameterValue id="nw_param_val_C-927990186439215014" parameterRef="/soa/b2b/seed/protocol.xml#file-param-filename_separator"/>
+         <ParameterValue id="nw_param_val_XHKDzP6378063447618564842" parameterRef="/soa/b2b/seed/protocol.xml#file-param-headerfile_extn"/>
+         <ParameterValue id="nw_param_val_L1618569987508981568" parameterRef="/soa/b2b/seed/protocol.xml#file-param-message_splitter"/>
+         <ParameterValue id="nw_param_val_gsnxAWY3880920332162529331" parameterRef="/soa/b2b/seed/protocol.xml#file-param-tp_profile_name"/>
+      </TransportProtocolRef>
+      <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_reMrGFv6254268167899113247" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
+   </DeliveryChannel>
+   <SupportedDocumentDefinition docDefName="837Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-nEEx5865990248744593649" id="SUPPORTED_DEFINITION_mqGXEj99609024607401157_0" initiator="true"/>
+   <SupportedDocumentDefinition docDefName="277Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="277" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-mM8598771600663088110" id="SUPPORTED_DEFINITION_E-5415838017022396355_1" initiator="false"/>
+   <SupportedDocumentDefinition docDefName="999Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="999" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J1584719480914781994" id="SUPPORTED_DEFINITION_PQ-1487203882841629198_1" initiator="false"/>
+   <SupportedDocumentDefinition docDefName="837X222A1" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-y-7620837853100445265" id="SUPPORTED_DEFINITION_id-4984987316144565423_0" initiator="true"/>
+   <SupportedDocumentDefinition docDefName="837X222A1" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-y-7620837853100445265" id="SUPPORTED_DEFINITION_H-3023261253682794937_1" initiator="false"/>
+   <SupportedDocumentDefinition docDefName="834Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="834" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J-1725108666218186175" id="SUPPORTED_DEFINITION_JqrBZ-8466086176840809959_1" initiator="false"/>
+   <SystemParameters>
+      <Parameter defaultValue="false" groupName="sys-group-nonpurge" id="sys-param-useJMSQueue" mandatory="false" name="b2b.useJMSQueue" parameterType="boolean" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="/MyCalloutDir" groupName="sys-group-nonpurge" id="sys-param-calloutDirectory" mandatory="false" name="b2b.calloutDirectory" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-nonpurge" id="sys-param-SMTPHost" mandatory="false" name="b2b.SMTPHost" parameterType="string" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-nonpurge" id="sys-param-useWsPolicy" mandatory="false" name="b2b.WS_Policy" parameterType="string" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="true" groupName="sys-group-Ack" id="sys-param-FAHandledByB2B" mandatory="false" name="b2b.FAHandledByB2B" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-Ack" id="sys-param-FAInternalProperties" mandatory="false" name="b2b.FAInternalProperties" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-Ack" id="sys-param-inboundReceiptAckNotify" mandatory="false" name="b2b.inboundReceiptAckNotify" parameterType="boolean" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-Ack" id="sys-param-inboundFuncAckNotify" mandatory="false" name="b2b.inboundFuncAckNotify" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-UI" id="sys-param-showPayload" mandatory="false" name="b2b.showPayload" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="true" groupName="sys-group-UI" id="sys-param-AutoSearch" mandatory="false" name="b2b.AutoSearch" parameterType="boolean" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="1048576" groupName="sys-group-UI" id="sys-param-payloadDisplaySize" mandatory="false" name="b2b.payloadDisplaySize" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="2000000" groupName="sys-group-Performance" id="sys-param-largePayloadSize" mandatory="false" name="b2b.largePayloadSize" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="/tmp" groupName="sys-group-Performance" id="sys-param-largePayloadDir" mandatory="false" name="b2b.largePayloadDir" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-MISC" id="sys-param-defaultTP" mandatory="false" name="b2b.defaultTP" parameterType="string" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-ignoreCorrelation" mandatory="false" name="b2b.ignoreCorrelation" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-MISC" id="sys-param-MimeType" mandatory="false" name="b2b.MimeType" parameterType="string" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-logPayload" mandatory="false" name="b2b.logPayload" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-reconnectOnError" mandatory="false" name="b2b.reconnectOnError" parameterType="boolean" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="#" groupName="sys-group-MISC" id="sys-param-HTTPHeaderDelimiter" mandatory="false" name="b2b.HTTPHeaderDelimiter" parameterType="string" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="#" groupName="sys-group-MISC" id="sys-param-SOAPHeaderDelimiter" mandatory="false" name="b2b.SOAPHeaderDelimiter" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-nonpurge" id="sys-param-SSLPrivateKeyPassword" mandatory="false" name="b2b.SSLPrivateKeyPassword" parameterType="credential" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-ReplyToAsRequest" mandatory="false" name="b2b.ReplyToAsRequest" parameterType="boolean" usedByUI="b2b-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="true" groupName="sys-group-MISC" id="sys-param-genericMessageType" mandatory="false" name="b2b.genericMessageType" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="0" groupName="sys-group-MISC" id="sys-param-OutBoundDispatcher" mandatory="false" name="b2b.OutBoundDispatcher" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="0" groupName="sys-group-MISC" id="sys-param-InBoundDispatcher" mandatory="false" name="b2b.InBoundDispatcher" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-AutoStackHandler" mandatory="false" name="b2b.AutoStackHandler" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="60" groupName="sys-group-MISC" id="sys-param-StackHandlerInterval" mandatory="false" name="b2b.StackHandlerInterval" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-MISC" id="sys-param-partialBatchCommitSize" mandatory="false" name="b2b.partialBatchCommitSize" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-MISC" id="sys-param-useExceptionQueue" mandatory="false" name="b2b.useExceptionQueue" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter groupName="sys-group-MISC" id="sys-param-useNotificationQueue" mandatory="false" name="b2b.useNotificationQueue" parameterType="string" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="false" groupName="sys-group-MISC" id="sys-param-enableBAM" mandatory="false" name="b2b.enableBAM" parameterType="boolean" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+      <Parameter defaultValue="5" groupName="sys-group-MISC" id="sys-param-pollInterval" mandatory="false" name="b2b.pollInterval" parameterType="integer" usedByUI="b2b-ui,fastpath-ui" xmlns="http://xmlns.oracle.com/integration/b2b/common"/>
+   </SystemParameters>
+   <Contacts>
+      <ContactInfo contactTypeRef="/soa/b2b/types.xml#ctype-ContactName" id="CONTACT_ctype-ContactName_FLVZsIe5972433474141539647" value="Kevin King"/>
+   </Contacts>
+</TradingPartner>

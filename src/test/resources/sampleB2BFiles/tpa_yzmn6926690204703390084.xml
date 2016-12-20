@@ -1,0 +1,32 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Agreement agreementId="BETTERMMA_837Agreement" id="tpa_yzmn6926690204703390084" name="BETTERMMA_837Agreement" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <SupportedDocumentType docDefName="837X222A1" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="837" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-y-7620837853100445265" id="docdef_K-1823676166910578186">
+      <InitiatingParticipant id="par_bpg1547402987225603953" supportedDocumentDefinitionRef="/soa/b2b/tp_MyCompany.xml#SUPPORTED_DEFINITION_id-4984987316144565423_0" tradingPartnerRef="/soa/b2b/tp_MyCompany.xml#tp_MyCompany">
+         <Identifications>
+            <IdentificationRef id="idn_Rmu-2469835548053769792" identificationRef="/soa/b2b/tp_MyCompany.xml#tpIden_JyOs1278159136548540063" type="EDI Group ID" value="301438"/>
+            <IdentificationRef id="idn_B3216836015695930581" identificationRef="/soa/b2b/tp_MyCompany.xml#tpIden_s-5566992466383120391" type="EDI Group ID Qualifier" value="ZZ"/>
+            <IdentificationRef id="idn_ubSU8352939227685756624" identificationRef="/soa/b2b/tp_MyCompany.xml#ID1234" type="Name" value="AVIOConsulting"/>
+         </Identifications>
+         <DeliveryChannels/>
+      </InitiatingParticipant>
+      <RespondingParticipant id="par_D8505164985197114737" supportedDocumentDefinitionRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#SUPPORTED_DEFINITION_Ws-2069937257713184343_1" tradingPartnerRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#tp_XnfTl1318734747197746601">
+         <Identifications>
+            <IdentificationRef id="idn_Y-3377121271925665316" identificationRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#tpIden_P-7272204907515055309" type="EDI Group ID Qualifier" value="ZZ"/>
+            <IdentificationRef id="idn_mU1594742914410842043" identificationRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#tpIden_V5878022975769495520" type="EDI Interchange ID" value="20488"/>
+            <IdentificationRef id="idn_yKAfN-4467120318402975185" identificationRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#tpIden_ejWVe6237522730157804743" type="Name" value="BETTERMMA"/>
+         </Identifications>
+         <DeliveryChannels>
+            <DeliveryChannelRef deliveryChannelRef="/soa/b2b/tp_XnfTl1318734747197746601.xml#CHANNEL_ogQYZn-6486582916691713555" id="chnl_MeLOSOd-7479311215760530291"/>
+         </DeliveryChannels>
+      </RespondingParticipant>
+      <AgrDocTypeParameterValues>
+         <ParameterValue id="nw_param_val_Iy-5413291173675864512" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-validate" value="false"/>
+         <ParameterValue id="nw_param_val_GIJMoK-2651323095088784444" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-translate" value="true"/>
+         <ParameterValue id="nw_param_val_n-4156955133940679467" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-fa" value="true"/>
+         <ParameterValue id="nw_param_val_R-6366446110929825612" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAHandledByB2B" value="None"/>
+         <ParameterValue id="nw_param_val_h-8143437560976021694" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryInterval"/>
+         <ParameterValue id="nw_param_val_HUb-5251029914248874210" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryCount"/>
+         <ParameterValue id="nw_param_val_YgN2210659044429716212" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-isSyncRespAgreement"/>
+      </AgrDocTypeParameterValues>
+   </SupportedDocumentType>
+</Agreement>

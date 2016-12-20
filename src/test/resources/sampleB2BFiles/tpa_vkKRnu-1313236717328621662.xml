@@ -1,0 +1,26 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<Agreement agreementId="999Agreement" id="tpa_vkKRnu-1313236717328621662" name="999Agreement" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <SupportedDocumentType docDefName="999Default" docProtocolName="EDI_X12" docProtocolVersion="v5010" docTypeName="999" documentDefinitionRef="/soa/b2b/doc_EDI_X12.xml#NewDefinition-J1584719480914781994" id="docdef_plO2395099518614099764">
+      <InitiatingParticipant id="par_HKcGHqu-1332064753017368116" supportedDocumentDefinitionRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#SUPPORTED_DEFINITION_dUnQBy-8092954551944950788_0" tradingPartnerRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#tp_luZRYV-7072537905454701067">
+         <Identifications>
+            <IdentificationRef id="idn_f-2390354083840478249" identificationRef="/soa/b2b/tp_luZRYV-7072537905454701067.xml#tpIden_VuL-6721251668582648097" type="Name" value="BradyInc"/>
+         </Identifications>
+         <DeliveryChannels/>
+      </InitiatingParticipant>
+      <RespondingParticipant id="par_myG-1920676827218600355" supportedDocumentDefinitionRef="/soa/b2b/tp_MyCompany.xml#SUPPORTED_DEFINITION_PQ-1487203882841629198_1" tradingPartnerRef="/soa/b2b/tp_MyCompany.xml#tp_MyCompany">
+         <Identifications>
+            <IdentificationRef id="idn_iZUKA6438229458284140924" identificationRef="/soa/b2b/tp_MyCompany.xml#ID1234" type="Name" value="AVIOConsulting"/>
+         </Identifications>
+         <DeliveryChannels/>
+      </RespondingParticipant>
+      <AgrDocTypeParameterValues>
+         <ParameterValue id="nw_param_val_Wy7681675575272442481" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-validate" value="false"/>
+         <ParameterValue id="nw_param_val_uBRBDI-1822687056395630154" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-translate" value="true"/>
+         <ParameterValue id="nw_param_val_g5193117012324142013" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-fa" value="false"/>
+         <ParameterValue id="nw_param_val_WcYudb-2016892050524489710" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FAHandledByB2B"/>
+         <ParameterValue id="nw_param_val_Kww1833384927553487023" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryInterval"/>
+         <ParameterValue id="nw_param_val_u-7840480299048666385" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-FARetryCount"/>
+         <ParameterValue id="nw_param_val_h3543120355363468841" parameterRef="/soa/b2b/seed/protocol.xml#x12-param-isSyncRespAgreement"/>
+      </AgrDocTypeParameterValues>
+   </SupportedDocumentType>
+</Agreement>

@@ -33,12 +33,9 @@
                             <package>
                                 com.avioconsulting:b2b-maven-plugin:b2bPackage
                             </package>
-                            <!--<install>-->
-                                <!--org.apache.maven.plugins:maven-install-plugin:install-->
-                            <!--</install>-->
-                            <!--<deploy>-->
-                                <!--org.apache.maven.plugins:maven-deploy-plugin:deploy-->
-                            <!--</deploy>-->
+                            <pre-integration-test>
+                                com.avioconsulting:b2b-maven-plugin:b2bImport
+                            </pre-integration-test>
                         </phases>
                     </lifecycle>
                 </lifecycles>

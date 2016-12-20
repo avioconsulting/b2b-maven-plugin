@@ -21,6 +21,17 @@ abstract class AbstractB2bMojo extends AbstractMojo {
     @Parameter(property = 'soa.oracle.home', required = true)
     protected String oracleSoaHome
 
+    enum B2BArtifactType {
+        DocumentDefinitions,
+        PartnersAndAgreements
+    }
+
+    @Parameter(property = 'b2b.artifact.type', required = true)
+    protected B2BArtifactType b2BArtifactType
+
+    @Parameter(property = 'b2b.partners.agreements', required = false)
+    protected String[] partnerAgreements
+
     @Component
     protected MavenProject project
 

@@ -54,7 +54,10 @@ dependencies {
     compile 'org.apache.ant:ant:1.9.7'
     compile 'org.apache.maven:maven-plugin-api:3.3.9'
     provided 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.5'
-    provided 'org.apache.maven:maven-project:3.0-alpha-2'
+    def mvnProject = 'org.apache.maven:maven-project:3.0-alpha-2'
+    // use explicitly in tests but Maven will provide the dependency at runtime
+    provided mvnProject
+    testCompile mvnProject
     compile 'org.codehaus.groovy:groovy-all:2.4.6'
     testCompile group: 'junit', name: 'junit', version: '4.11'
     testCompile 'org.hamcrest:hamcrest-library:1.3'

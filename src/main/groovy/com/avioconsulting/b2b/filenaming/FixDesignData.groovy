@@ -19,14 +19,15 @@ class FixDesignData {
         Node rootNode = new XmlParser().parse(xmlFile)
         def name = rootNode.@name
         def oldId = rootNode.@id as String
-        def newId = "tp_${name}"
+        def prefix = oldId.contains('tpa') ? 'tpa' : 'tp'
+        def newId = "${prefix}_${name}"
         rootNode.@id = newId
         def newFile = new File(directory, "${newId}.xml")
         this.logger "Renaming ${xmlFile} to ${newFile} and updating ID..."
         updateXml(xmlFile, rootNode)
         xmlFile.renameTo(newFile)
         updateReferences(directory, oldId, newId)
-        name
+        newId
     }
 
     private List<String> updateReferences(File directory, oldId, newId) {

@@ -23,7 +23,7 @@ class FixDesignDataTest {
     }
 
     @Test
-    void references_fileRenamed() {
+    void tradingPartner_fileRenamed() {
         // arrange
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
@@ -32,7 +32,7 @@ class FixDesignDataTest {
 
         // assert
         assertThat result,
-                   is(equalTo('BradyInc'))
+                   is(equalTo('tp_BradyInc'))
         assertThat new File(directory, inputFilename).exists(),
                    is(equalTo(false))
         def expectedFile = new File(directory, 'tp_BradyInc.xml')
@@ -41,7 +41,7 @@ class FixDesignDataTest {
     }
 
     @Test
-    void references_IdAttributeChanged() {
+    void tradingPartner_IdAttributeChanged() {
         // arrange
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
@@ -56,7 +56,7 @@ class FixDesignDataTest {
     }
 
     @Test
-    void references_othersChanged() {
+    void tradingPartner_othersChanged() {
         // arrange
         def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
@@ -76,5 +76,38 @@ class FixDesignDataTest {
                            not(containsString('tp_luZRYV-7072537905454701067'))
             }
         }
+    }
+
+    @Test
+    void tradingPartnerAgreement_fileRenamed() {
+        // arrange
+        def inputFilename = 'tpa_aSr1674752484585300652.xml'
+
+        // act
+        def result = logger.fix inputFilename, directory
+
+        // assert
+        assertThat result,
+                   is(equalTo('tpa_BETTERMMA_999Agreement'))
+        assertThat new File(directory, inputFilename).exists(),
+                   is(equalTo(false))
+        def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
+        assertThat expectedFile.exists(),
+                   is(equalTo(true))
+    }
+
+    @Test
+    void tradingPartnerAgreement_IdAttributeChanged() {
+        // arrange
+        def inputFilename = 'tpa_aSr1674752484585300652.xml'
+
+        // act
+        logger.fix inputFilename, directory
+        def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
+        def actualId = new XmlParser().parse(expectedFile).@id
+
+        // assert
+        assertThat actualId as String,
+                   is(equalTo('tpa_BETTERMMA_999Agreement'))
     }
 }

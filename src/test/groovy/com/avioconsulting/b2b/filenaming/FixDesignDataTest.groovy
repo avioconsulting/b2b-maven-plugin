@@ -10,9 +10,9 @@ import static org.hamcrest.Matchers.is
 import static org.hamcrest.core.IsNot.not
 import static org.junit.Assert.assertThat
 
-class FixTradingPartnerTest {
+class FixDesignDataTest {
     def directory = new File('build/tmp/sampleB2BFiles')
-    def logger = new FixTradingPartner({ str -> println "From class: ${str}" })
+    def logger = new FixDesignData({ str -> println "From class: ${str}" })
 
     @Before
     void setupFreshData() {

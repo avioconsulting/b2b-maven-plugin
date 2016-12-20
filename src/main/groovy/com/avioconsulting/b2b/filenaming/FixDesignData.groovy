@@ -1,9 +1,9 @@
 package com.avioconsulting.b2b.filenaming
 
-class FixTradingPartner {
+class FixDesignData {
     private final Closure logger
 
-    FixTradingPartner(Closure logger) {
+    FixDesignData(Closure logger) {
         this.logger = logger
     }
 

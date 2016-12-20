@@ -31,10 +31,11 @@ class B2bExportMojo extends AbstractB2bMojo {
                          dest: tmpDir.absolutePath,
                          overwrite: true
         def b2bPath = join(tmpDir, 'soa', 'b2b')
-        def outputDir = new File(basedir, 'src')
+        def outputDir = join basedir, 'src', 'main', 'resources', 'b2b'
         if (outputDir.exists()) {
             outputDir.deleteDir()
         }
+        outputDir.mkdirs()
         b2bPath.renameTo(outputDir)
         this.log.info 'Removing temporary directory'
         tmpDir.deleteDir()

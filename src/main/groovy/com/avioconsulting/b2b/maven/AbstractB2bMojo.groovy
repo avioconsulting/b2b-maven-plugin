@@ -1,5 +1,6 @@
 package com.avioconsulting.b2b.maven
 
+import com.avioconsulting.b2b.ant.MavenLogger
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.Component
 import org.apache.maven.plugins.annotations.Parameter
@@ -66,7 +67,7 @@ abstract class AbstractB2bMojo extends AbstractMojo {
             throw new FileNotFoundException("Unable to find B2B ANT task @ ${antXmlPath}!")
         }
         antProject.setUserProperty 'ant.file', antXmlPath.absolutePath
-        antProject.addBuildListener new AntLogger(this.log)
+        antProject.addBuildListener new MavenLogger(this.log)
         def helper = ProjectHelper.projectHelper
         antProject.addReference 'ant.projectHelper', helper
         helper.parse antProject, antXmlPath

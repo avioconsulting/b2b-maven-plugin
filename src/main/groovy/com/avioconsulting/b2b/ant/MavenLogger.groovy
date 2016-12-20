@@ -1,13 +1,13 @@
-package com.avioconsulting.b2b.maven
+package com.avioconsulting.b2b.ant
 
 import org.apache.maven.plugin.logging.Log
 import org.apache.tools.ant.DefaultLogger
 import org.apache.tools.ant.Project
 
-class AntLogger extends DefaultLogger {
+class MavenLogger extends DefaultLogger {
     private final Log mavenLogger
 
-    AntLogger(Log mavenLogger) {
+    MavenLogger(Log mavenLogger) {
         this.messageOutputLevel = Project.MSG_INFO
         this.mavenLogger = mavenLogger
     }

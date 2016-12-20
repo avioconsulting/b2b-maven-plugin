@@ -4,7 +4,9 @@ import org.apache.commons.io.FileUtils
 import org.junit.Before
 import org.junit.Test
 
-import static junit.framework.TestCase.fail
+import static org.hamcrest.Matchers.equalTo
+import static org.hamcrest.Matchers.is
+import static org.junit.Assert.assertThat
 
 class FixTradingPartnerTest {
     def directory = new File('build/tmp/sampleB2BFiles')
@@ -18,12 +20,20 @@ class FixTradingPartnerTest {
     }
 
     @Test
-    void stuff() {
+    void references_fileRenamed() {
         // arrange
+        def inputFilename = 'tp_luZRYV-7072537905454701067.xml'
 
         // act
+        def result = FixTradingPartner.fix inputFilename, directory
 
         // assert
-        fail 'write this'
+        assertThat result,
+                   is(equalTo('BradyInc'))
+        assertThat new File(directory, inputFilename).exists(),
+                   is(equalTo(false))
+        def expectedFile = new File(directory, 'tp_BradyInc.xml')
+        assertThat expectedFile.exists(),
+                   is(equalTo(true))
     }
 }

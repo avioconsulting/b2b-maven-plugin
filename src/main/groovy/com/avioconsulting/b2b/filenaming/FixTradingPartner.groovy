@@ -1,7 +1,5 @@
 package com.avioconsulting.b2b.filenaming
 
-import sun.reflect.generics.reflectiveObjects.NotImplementedException
-
 class FixTradingPartner {
     /**
      * Fixes a single trading partner file and all references to it
@@ -11,6 +9,10 @@ class FixTradingPartner {
      * @return - the new ID of the trading partner
      */
     static String fix(String tradingPartnerFile, File directory) {
-        throw new NotImplementedException()
+        def xmlFile = new File(directory, tradingPartnerFile)
+        Node parsed = new XmlParser(false, true).parse(xmlFile)
+        def name = parsed.attribute('name')
+        xmlFile.renameTo(new File(directory, "tp_${name}.xml"))
+        name
     }
 }

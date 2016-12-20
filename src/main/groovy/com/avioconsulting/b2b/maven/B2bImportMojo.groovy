@@ -18,5 +18,7 @@ class B2bImportMojo extends AbstractB2bMojo {
         antProject.setProperty 'exportfile', artifact.absolutePath
         antProject.setProperty 'overwrite', this.overwrite.toString()
         runAntTarget antProject, 'b2bimport'
+        runAntTarget antProject, 'b2bvalidate'
+        runAntTarget antProject, 'b2bdeploy'
     }
 }

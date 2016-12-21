@@ -45,7 +45,7 @@ class B2BImportMojoTest implements MojoAnt {
 
         // assert
         assertThat targetsRun,
-                   is(equalTo(['b2bimport', 'b2bvalidate', 'b2bdeploy']))
+                   is(equalTo(['b2bimport', 'b2bdeploy']))
     }
 
     @Test
@@ -99,7 +99,6 @@ class B2BImportMojoTest implements MojoAnt {
                    is(equalTo([
                            exportfile: zipFile.absolutePath,
                            overwrite : false.toString(),
-                           args      : 'tp_partner1.xml,tpa_agree1.xml,tpa_agree2.xml',
                            tpanames  : 'agree1,agree2'
                    ]))
     }

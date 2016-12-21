@@ -33,10 +33,6 @@ class B2bImportMojo extends AbstractB2bMojo {
             return
         }
 
-        def partnerFilenames = partners.collect { f -> getPartnerFilename(f) }
-        def agreementFilenames = agreements.collect { f -> getAgreementFilename(f) }
-        antProject.setProperty 'args', (partnerFilenames + agreementFilenames).join(',')
-        ant 'b2bvalidate'
         antProject.setProperty 'tpanames', agreements.join(',')
         ant 'b2bdeploy'
     }

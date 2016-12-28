@@ -1,6 +1,7 @@
 package com.avioconsulting.b2b.maven
 
 import com.avioconsulting.b2b.ant.MavenLogger
+import com.avioconsulting.b2b.ant.TargetMessageSizeFixer
 import org.apache.maven.plugin.AbstractMojo
 import org.apache.maven.plugins.annotations.Component
 import org.apache.maven.plugins.annotations.Parameter
@@ -29,6 +30,9 @@ abstract class AbstractB2bMojo extends AbstractMojo {
 
     @Parameter(property = 'b2b.agreements', required = false)
     protected String[] agreements
+
+    @Parameter(property = TargetMessageSizeFixer.settingName, defaultValue = '40000000')
+    private long weblogicMaxMessageSize
 
     @Component
     protected MavenProject project
@@ -93,6 +97,8 @@ abstract class AbstractB2bMojo extends AbstractMojo {
         if (!antXmlPath.exists()) {
             throw new FileNotFoundException("Unable to find B2B ANT task @ ${antXmlPath}!")
         }
+        // the max message size limit is quickly exceeded and the java ant task in the file does not pass on props
+        new TargetMessageSizeFixer({ msg -> this.log.info msg }).fixAntTarget(antXmlPath, this.weblogicMaxMessageSize)
         antProject.setUserProperty 'ant.file', antXmlPath.absolutePath
         antProject.addBuildListener new MavenLogger(this.log)
         def helper = ProjectHelper.projectHelper

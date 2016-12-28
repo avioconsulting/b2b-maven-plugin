@@ -23,7 +23,7 @@ class TargetMessageSizeFixer {
             changed = true
             this.logger "Updating setting from ${existingNode.@value} to ${setting} in ${b2bAntFilePath}"
             existingNode.@value = setting
-        } else if (existingNode == null) {
+        } else if (!existingNode) {
             changed = true
             this.logger "Adding setting ${setting} to ${b2bAntFilePath}"
             javaTask.appendNode 'jvmarg', [value: setting]

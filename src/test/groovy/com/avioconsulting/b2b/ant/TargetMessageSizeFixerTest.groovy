@@ -54,11 +54,20 @@ class TargetMessageSizeFixerTest {
     @Test
     void there_Matches() {
         // arrange
+        FileUtils.copyFile new File('src/test/resources/ant/alreadyThere.xml'), targetFile
 
         // act
+        fixer.fixAntTarget targetFile
 
         // assert
-        fail 'write this'
+        assertThat this.jvmArgs,
+                   is(equalTo(['-Xms512m',
+                               '-Xmx1024m',
+                               '-Djava.naming.provider.url=${java.naming.provider.url}',
+                               '-Djava.naming.factory.initial=${java.naming.factory.initial}',
+                               '-Djava.naming.security.principal=${java.naming.security.principal}',
+                               '-Djava.naming.security.credentials=${java.naming.security.credentials}',
+                               '-Dweblogic.MaxMessageSize=40000000']))
     }
 
     @Test

@@ -38,7 +38,7 @@ class TargetMessageSizeFixerTest {
         FileUtils.copyFile new File('src/test/resources/ant/noSetting.xml'), targetFile
 
         // act
-        fixer.fixAntTarget targetFile
+        fixer.fixAntTarget targetFile, 40000000
 
         // assert
         assertThat this.jvmArgs,
@@ -57,7 +57,7 @@ class TargetMessageSizeFixerTest {
         FileUtils.copyFile new File('src/test/resources/ant/alreadyThere.xml'), targetFile
 
         // act
-        fixer.fixAntTarget targetFile
+        fixer.fixAntTarget targetFile, 40000000
 
         // assert
         assertThat this.jvmArgs,
@@ -73,10 +73,19 @@ class TargetMessageSizeFixerTest {
     @Test
     void there_DifferentSetting() {
         // arrange
+        FileUtils.copyFile new File('src/test/resources/ant/wrongSetting.xml'), targetFile
 
         // act
+        fixer.fixAntTarget targetFile, 50000000
 
         // assert
-        fail 'write this'
+        assertThat this.jvmArgs,
+                   is(equalTo(['-Xms512m',
+                               '-Xmx1024m',
+                               '-Djava.naming.provider.url=${java.naming.provider.url}',
+                               '-Djava.naming.factory.initial=${java.naming.factory.initial}',
+                               '-Djava.naming.security.principal=${java.naming.security.principal}',
+                               '-Djava.naming.security.credentials=${java.naming.security.credentials}',
+                               '-Dweblogic.MaxMessageSize=50000000']))
     }
 }

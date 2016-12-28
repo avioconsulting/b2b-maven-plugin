@@ -8,7 +8,7 @@ class TargetMessageSizeFixer {
         this.logger = logger
     }
 
-    void fixAntTarget(File b2bAntFilePath) {
+    void fixAntTarget(File b2bAntFilePath, long maxMessageSize) {
         def parser = new XmlParser()
         Node antNode = parser.parse(b2bAntFilePath)
         Node utilityTarget = antNode.target.find { t -> t.@name == 'utility' }
@@ -16,11 +16,14 @@ class TargetMessageSizeFixer {
             throw new Exception('Unable to find java ANT task call!')
         }
         Node javaTask = utilityTarget.java[0]
-        def setting = "-Dweblogic.MaxMessageSize=40000000"
+        def setting = "-D${settingName}=${maxMessageSize}"
         def changed = false
-        if (javaTask.jvmarg.any { node -> node.@value.contains(settingName) }) {
-            //throw new Exception('foo')
-        } else {
+        def existingNode = javaTask.jvmarg.find { node -> node.@value.contains(settingName) }
+        if (existingNode && existingNode.@value != setting) {
+            changed = true
+            this.logger "Updating setting from ${existingNode.@value} to ${setting} in ${b2bAntFilePath}"
+            existingNode.@value = setting
+        } else if (existingNode == null) {
             changed = true
             this.logger "Adding setting ${setting} to ${b2bAntFilePath}"
             javaTask.appendNode 'jvmarg', [value: setting]

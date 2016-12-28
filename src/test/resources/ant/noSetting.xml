@@ -1,0 +1,626 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="B2B tutorial" default="usage" basedir=".">
+    <property environment="env" />
+    <property name="args" value="" />
+
+    <fail message="JAVA_HOME/ANT_HOME is not available. Please provide this property.">
+        <condition>
+            <and>
+                <not>
+                    <isset property="env.JAVA_HOME" />
+                </not>
+                <not>
+                    <isset property="env.ANT_HOME" />
+                </not>
+            </and>
+        </condition>
+    </fail>
+
+    <!--If user set following property, take them for script -->
+    <condition property="WL_HOME" value="${env.WL_HOME}">
+        <isset property="env.WL_HOME" />
+    </condition>
+
+    <condition property="MW_ORA_HOME" value="${env.MW_ORA_HOME}">
+        <isset property="env.MW_ORA_HOME" />
+    </condition>
+
+    <!-- Derive relative path from build script location-->
+    <property name="oracle.home" value="${basedir}/.." />
+
+    <import file="ant-soa-common.xml"/>
+
+    <property name="MW_ORA_HOME" value="${oracle.home}" />
+    <property name="WL_HOME" value="${MW_ORA_HOME}/../wlserver" />
+
+    <!--property name="domain_home" value="${wls.dhome}"/-->
+    <property name="wl_lib" value="${WL_HOME}/server/lib" />
+    <property name="oracle_home" value="${MW_ORA_HOME}" />
+    <property name="soa_home" value="${oracle_home}/soa" />
+    <property name="b2b_home" value="${soa_home}/modules/oracle.soa.b2b_11.1.1" />
+
+    <!--JNDI property used to make RMI call-->
+    <property name="jndi.properties" value="jndi.properties" />
+    <dirname property="jndi.prop.folder" file="${jndi.properties}" />
+
+
+    <path id="weblogic.classpath">
+
+        <pathelement location="${b2b_home}/b2b.jar" />
+        <pathelement location="${wl_lib}/weblogic.jar" />
+        <pathelement location="${jndi.prop.folder}" />
+
+        <!-- following jars required for cpa utilities -->
+        <pathelement location="${common.components.home}/modules/oracle.xdk/xml.jar"/>
+        <pathelement location="${common.components.home}/modules/oracle.xdk_12.1.3/xmlparserv2.jar" />
+        <pathelement location="${common.components.home}/modules/oracle.pki_12.1.3/oraclepki.jar" />
+
+    </path>
+
+    <target name="usage">
+        <java classname="org.apache.tools.ant.Main">
+            <arg line="-projecthelp -f ${ant.file}" />
+        </java>
+    </target>
+
+    <target name="weblogic_dependencies">
+        <echo>
+            Weblogic server location: ${WL_HOME}
+            JNDI properties folder location: ${jndi.prop.folder}
+        </echo>
+    </target>
+
+    <target name="utility" depends="verifyargs">
+
+        <property file="ant_general.properties" />
+        <echo>
+            exitonerror=${exitonerror}
+        </echo>
+
+
+        <property file="${jndi.properties}" />
+        <echo>
+            java.naming.provider.url=${java.naming.provider.url}
+            java.naming.factory.initial=${java.naming.factory.initial}
+            java.naming.security.principal=${java.naming.security.principal}
+            java.naming.security.credentials=*****
+        </echo>
+        <echo>
+            args=${args1}
+        </echo>
+        <java classname="oracle.tip.b2b.utility.B2BCommandLineUtility" classpathref="weblogic.classpath" fork="yes" resultproperty="result">
+            <!--Memory arguments for JVM-->
+            <jvmarg value="-Xms512m" />
+            <jvmarg value="-Xmx1024m" />
+            <!--jvmarg value="-Xmn300m" /-->
+            <arg line="${args1}" />
+            <syspropertyset id="idsps" refid="${sysProp}" />
+            <syspropertyset refid="sysProxyProperties" />
+
+            <!-- Take jndiproperties from commandline arg-->
+            <jvmarg value="-Djava.naming.provider.url=${java.naming.provider.url}"/>
+            <jvmarg value="-Djava.naming.factory.initial=${java.naming.factory.initial}"/>
+            <jvmarg value="-Djava.naming.security.principal=${java.naming.security.principal}"/>
+            <jvmarg value="-Djava.naming.security.credentials=${java.naming.security.credentials}"/>
+        </java>
+
+        <!-- B2BCommandLineUtility exists with status 5 for client/server side error. -->
+        <fail message="Operation ${args1} Failed">
+            <condition>
+                <equals arg1="${result}" arg2="5" />
+            </condition>
+        </fail>
+    </target>
+
+    <target name="verifyargs" depends="weblogic_dependencies">
+        <taskdef name="argsverify" classname="oracle.tip.b2b.utility.B2BCommandLineVerifyUtility" classpathref="weblogic.classpath"/>
+        <argsverify appName="${args1}" b2bexcludeparamlist="${b2bexcludeparamlist}" failonerror="true"/>
+    </target>
+
+    <target name="b2bpurge" description="Purge Entire Repository">
+        <!--antcall target="verifyargs">
+            <param name="ant.Myargs1" value="purge" />
+        </antcall-->
+        <antcall target="utility">
+            <param name="args1" value="purge ${args}" />
+            <param name="sysProp" value="sysPurgeProp" />
+        </antcall>
+
+    </target>
+    <target name="b2bupdatecalloutjars" description="Purge Entire Repository">
+        <antcall target="utility">
+            <param name="args1" value="updatecalloutjars ${args}" />
+            <param name="sysProp" value="sysUpdateCalloutJars" />
+        </antcall>
+    </target>
+
+    <target name="b2bimport" description="import repository">
+        <antcall target="utility">
+            <param name="args1" value="import ${args}" />
+            <param name="sysProp" value="sysImportProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bdeploy" description="Deploy agreements">
+        <antcall target="utility">
+            <param name="args1" value="deploy ${args}" />
+            <param name="sysProp" value="sysDeployProp" />
+        </antcall>
+    </target>
+    <target name="b2bmanagedeploy" description="Manage Deploy agreements">
+        <antcall target="utility">
+            <param name="args1" value="managedeploy ${args}" />
+            <param name="sysProp" value="sysManageDeployProp" />
+        </antcall>
+    </target>
+
+    <target name="b2benqueue" description="enqueue event">
+        <antcall target="utility">
+            <param name="args1" value="enqueue ${args}" />
+            <param name="sysProp" value="sysEnqueueEventProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bexport" description="export repository/tp/tpa/active_tpa">
+        <antcall target="utility">
+            <param name="args1" value="export ${args}" />
+            <param name="sysProp" value="sysExportProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bcheckcpaid" description="checkcpaid repository">
+        <antcall target="utility">
+            <param name="args1" value="checkcpaid ${args}" />
+            <param name="sysProp" value="sysImportProp" />
+        </antcall>
+    </target>
+
+
+    <target name="b2bvalidate" description="Make validation">
+        <antcall target="utility">
+            <param name="args1" value="validate ${args}" />
+            <param name="sysProp" value="sysValidateProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bupgrade" description="imports 10g upgrade export file">
+        <antcall target="utility">
+            <param name="args1" value="upgrade ${args}" />
+            <param name="sysProp" value="sysUpgradeProp" />
+        </antcall>
+    </target>
+
+
+    <target name="b2bcpaimport" description="convert CPA xml to Oracle B2B Metadata">
+        <antcall target="utility">
+            <param name="args1" value="cpaimport ${propfile}" />
+            <param name="sysProp" value="sysCPAProp" />
+        </antcall>
+
+    </target>
+
+    <target name="b2bresubmit" description="resubmit the message">
+        <!--antcall target="verifyargs">
+            <param name="ant.Myargs1" value="resubmit" />
+        </antcall-->
+        <antcall target="utility">
+            <param name="args1" value="resubmit ${propfile}" />
+            <param name="sysProp" value="sysResubmitProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bcpaexport" description="convert Oracle B2B Metadata to CPA xml">
+        <antcall target="utility">
+            <param name="args1" value="cpaexport ${propfile}" />
+            <param name="sysProp" value="sysCPAProp" />
+        </antcall>
+    </target>
+    <target name="b2bmanagekeystore" description="Keystore Certificate Management">
+        <antcall target="utility">
+            <param name="args1" value="b2bmanagekeystore ${args}" />
+            <param name="sysProp" value="keystoreProp" />
+        </antcall>
+    </target>
+
+    <target name="b2bselfservice" description="convert Oracle B2B Selfservice xml to Oracle B2B Metadata">
+        <antcall target="utility">
+            <param name="args1" value="selfservice" />
+            <param name="sysProp" value="sysSelfService" />
+        </antcall>
+    </target>
+    <target name="b2bconfig" description="Fine Grained Metadata T2P">
+        <antcall target="utility">
+            <param name="args1" value="b2bconfig" />
+            <param name="sysProp" value="sysConfig" />
+        </antcall>
+    </target>
+    <target name="b2bselfservicexsd" description="creates selfservice.xsd in pwd directory">
+        <antcall target="utility">
+            <param name="args1" value="selfservicexsd" />
+            <param name="sysProp" value="sysSelfService" />
+        </antcall>
+    </target>
+    <target name="b2bschedule" description="TP Down Time Schedule">
+        <antcall target="utility">
+            <param name="args1" value="schedule ${args}" />
+            <param name="sysProp" value="sysScheduleProp" />
+        </antcall>
+    </target>
+    <target name="b2bbatch" description="Schedule Batch">
+        <antcall target="utility">
+            <param name="args1" value="batch ${args}" />
+            <param name="sysProp" value="sysBatchProp" />
+        </antcall>
+    </target>
+    <target name="b2bsequencemanager" description="Sequence Manager">
+        <antcall target="utility">
+            <param name="args1" value="sequencemanager  ${args}" />
+            <param name="sysProp" value="sysSeqMgrProp" />
+        </antcall>
+    </target>
+    <target name="b2bkeystoreupdate" description="KeyStore Update">
+        <antcall target="utility">
+            <param name="args1" value="updatekeystore ${args}"/>
+            <param name="sysProp" value="syskeyStoreUpdProp"/>
+        </antcall>
+    </target>
+
+    <propertyset id="sysPurgeProp" description="property list for purge Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="mode" />
+        <propertyref name="fromdate" />
+        <propertyref name="todate" />
+        <propertyref name="msgstate" />
+        <propertyref name="tp" />
+        <propertyref name="direction" />
+        <propertyref name="msgtype" />
+        <propertyref name="agreement" />
+        <propertyref name="idtype" />
+        <propertyref name="idvalue" />
+        <propertyref name="doctype" />
+        <propertyref name="archive" />
+        <propertyref name="archivename" />
+        <propertyref name="force" />
+        <propertyref name="purgecontrolnumber" />
+        <propertyref name="agreementid" />
+        <propertyref name="cascadedelete" />
+        <!-- Added for action and service for bug 11773067 -->
+        <propertyref name="action" />
+        <propertyref name="service" />
+        <!--propertyref name="host"/-->
+        <propertyref name="exitonerror"/>
+        <propertyref name="partitioned"/>
+        <propertyref name="commitfrequency"/>
+        <propertyref name="partitioncleanmode"/>
+        <propertyref name="logmode"/>
+        <propertyref name="rowlimit"/>
+        <propertyref name="timelimit"/>
+        <propertyref name="refreshmw"/>
+    </propertyset>
+
+    <propertyset id="sysImportProp" description="property list for Import Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="exportfile" />
+        <propertyref name="overwrite" />
+        <propertyref name="localfile" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysUpgradeProp" description="property list for Upgrade Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="exportfile" />
+        <propertyref name="localfile" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysExportProp" description="property list for Export Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="tpanames" />
+        <propertyref name="tpname" />
+        <propertyref name="tp" />
+        <propertyref name="type" />
+        <propertyref name="exportfile" />
+        <propertyref name="active" />
+        <!--<propertyref name="credentials" /> -->
+        <propertyref name="policies" />
+        <propertyref name="localfile" />
+        <propertyref name="agreementid" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+    <propertyset id="keystoreProp" description="property list for Keystore Management">
+        <propertyref name="paramfile" />
+        <propertyref name="mode" />
+        <propertyref name="alias" />
+        <propertyref name="days" />
+        <propertyref name="exitonerror" />
+
+    </propertyset>
+    <propertyset id="sysProxyProperties" description="property list for http proxy host configurations">
+        <propertyref name="paramfile" />
+        <propertyref name="http.proxyHost" />
+        <propertyref name="http.proxyPort" />
+        <propertyref name="http.proxyPort" />
+        <propertyref name="http.nonProxyHosts" />
+        <propertyref name="http.proxyUser" />
+        <propertyref name="http.proxyPassword" />
+        <propertyref name="exitonerror" />
+
+    </propertyset>
+
+
+    <propertyset id="sysDeployProp" description="property list for Import Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="tpanames" />
+        <propertyref name="agreementid" />
+        <propertyref name="tp" />
+        <propertyref name="exitonerror" />
+
+        <!--<propertyref name="validation" /> -->
+    </propertyset>
+    <propertyset id="sysManageDeployProp" description="property list for Manage Deploy  Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="agreementid" />
+        <propertyref name="agreement" />
+        <propertyref name="state" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+    <propertyset id="sysUpdateCalloutJars" description="property list for Callout Jars Update Operation">
+        <propertyref name="path" />
+        <propertyref name="libraryname" />
+    </propertyset>
+
+    <propertyset id="sysEnqueueEventProp" description="property list for Enqueue Event Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="eventInfo" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysValidateProp" description="property list for Validate Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="mdsreference" />
+        <propertyref name="agreementid" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysCPAProp" description="property list for CPP/A Export/Import Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="propfile" />
+        <propertyref name="standard" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysConfig" description="property list for b2bconfig Operation">
+        <propertyref name="mode" />
+        <propertyref name="exportfile" />
+        <propertyref name="configplan" />
+        <propertyref name="generatedexportfile" />
+        <propertyref name="addAllDCParameters" />
+        <propertyref name="addAllDocParameters" />
+        <propertyref name="debug" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysSelfService" description="property list for SelfService Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="input" />
+        <propertyref name="output" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+    <propertyset id="sysResubmitProp" description="properties list for Resubmit Operation">
+        <!--[bbalakum:14754572 -->
+        <propertyref name="appmsgid" />
+        <!-- bbalakum:14754572]-->
+        <propertyref name="wiremsgid" />
+        <propertyref name="paramfile" />
+        <propertyref name="msgsource" />
+        <propertyref name="msgid" />
+        <propertyref name="payloadpath" />
+        <propertyref name="fromdate" />
+        <propertyref name="todate" />
+        <propertyref name="msgstate" />
+        <propertyref name="direction" />
+        <propertyref name="doctype" />
+        <propertyref name="tp" />
+        <propertyref name="convid" />
+        <propertyref name="protmsgid" />
+        <propertyref name="agreement" />
+        <propertyref name="oldcpaid" />
+        <propertyref name="newcpaid" />
+        <propertyref name="exclresubmit" />
+        <propertyref name="exclstate" />
+        <propertyref name="exclmsgid" />
+        <propertyref name="idtype" />
+        <propertyref name="idvalue" />
+        <propertyref name="mode" />
+        <propertyref name="maxcount" />
+        <!-- Added for 12328282 -->
+        <propertyref name="filePath" />
+        <propertyref name="sourceid" />
+        <propertyref name="protocolmessageid" />
+        <propertyref name="protocolcollaborationid" />
+        <!-- Added action and service for bug 11773067 -->
+        <propertyref name="action" />
+        <propertyref name="service" />
+        <propertyref name="exitonerror" />
+        <propertyref name="excldoctype" />
+    </propertyset>
+    <!-- Property files for downTime-->
+    <propertyset id="sysScheduleProp" description="property list for Schedule Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="mode" />
+        <propertyref name="tp" />
+        <propertyref name="schedulename" />
+        <propertyref name="fromdate" />
+        <propertyref name="todate" />
+        <propertyref name="channelname" />
+        <propertyref name="extend" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+    <propertyset id="sysSeqMgrProp" description="property list for Sequence Manager Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="mode" />
+        <propertyref name="msgid" />
+        <propertyref name="target" />
+        <propertyref name="state" />
+        <propertyref name="direction" />
+    </propertyset>
+    <propertyset id="sysBatchProp" description="property list for Batch Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="mode" />
+        <propertyref name="tp" />
+        <propertyref name="batchname" />
+        <propertyref name="document" />
+        <propertyref name="doctype" />
+        <propertyref name="docrevision" />
+        <propertyref name="batchtime" />
+        <propertyref name="batchcount" />
+        <propertyref name="batchfilesize" />
+        <propertyref name="isrepetitive" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+    <propertyset id="syskeyStoreUpdProp" description="property list for KeyStore updation">
+        <propertyref name="paramfile" />
+        <propertyref name="keystorelocation"/>
+        <propertyref name="keystorepassword"/>
+        <propertyref name="exitonerror"/>
+    </propertyset>
+    <!-- Poperty files -->
+    <target name="b2bcreate-prop" description="Create jndi.properties template file">
+        <echo file="jndi.properties">
+            java.naming.provider.url=t3://localhost:8001
+            java.naming.factory.initial=weblogic.jndi.WLInitialContextFactory
+            java.naming.security.principal=weblogic
+            java.naming.security.credentials=&lt;weblogic_password>
+        </echo>
+        <echo>
+            jndi.properties file successfully created
+        </echo>
+    </target>
+
+
+
+    <target name="b2bcreate-cpaprop" description="Create cpp_cpa.properties template file">
+        <echo file="cpp_cpa.properties">
+            # CPP/A Output files
+            oracle.tip.b2b.ebms.OutputFolder=/tmp/output/
+            # Oracle B2B Metadata File in case of CPA Export
+            #oracle.tip.b2b.ebms.Document=/tmp/output/Acme_soa.zip
+            # ebXML CPA File incase of CPA Import
+            #oracle.tip.b2b.ebms.Document=/tmp/input/cpa-example-2_0.xml
+            # Host Name
+            oracle.tip.b2b.ebms.Host=Acme
+            # Host endPoint Details
+            oracle.tip.b2b.ebms.HostEndPoint=http://&lt;hostName>:&lt;port>/b2b/httpReceiver
+            # Host Certificate Alias
+            oracle.tip.b2b.ebms.HostCertificateAlias=Acme
+            # Trading Partner Certificate Alias
+            oracle.tip.b2b.ebms.TPCertificateAlias=GlobalChips
+            # BPSS Export
+            oracle.tip.b2b.ebms.BPSSExport=false
+            #Log config
+            oracle.tip.b2b.ebms.LogFolder=/tmp/output/log/
+            # DEBUG|INFO|ERROR
+            oracle.tip.b2b.ebms.LogLevel=DEBUG
+            # text|xml
+            oracle.tip.b2b.ebms.LogType=text
+            ## Backend Application to Oracle B2B (AQ/JMS/FILE/FTP/SFTP)
+            oracle.tip.b2b.ebms.internalDeliveryChannel.protocol=JMS
+
+            ## JMS
+            oracle.tip.b2b.ebms.internalDeliveryChannel.JMS.destinationname=jms/b2b/B2B_IN_QUEUE
+            oracle.tip.b2b.ebms.internalDeliveryChannel.JMS.connectionfactory=jms/b2b/B2BQueueConnectionFactory
+            oracle.tip.b2b.ebms.internalDeliveryChannel.JMS.pollinginterval=5
+            oracle.tip.b2b.ebms.internalDeliveryChannel.JMS.msgType=TEXT
+
+            oracle.tip.b2b.ebms.KeystoreLocation=/tmp/JKS/Acme.jks
+            oracle.tip.b2b.ebms.KeystorePassword=password
+
+            # Improved import performace
+            oracle.tip.b2b.ebms.addAllDocParams=false
+
+            oracle.tip.b2b.ebms.validate=/tmp/b2b/CPA/cpp-cpa-2_0.xsd 			</echo>
+        <echo>
+            cpp_cpa.properties file successfully created
+        </echo>
+    </target>
+
+    <!-- begin: bbalakum:16605312 -->
+    <target name="updatechannel" description="update trading partner channel or activate/deactivate listening channel">
+        <antcall target="utility">
+            <param name="args1" value="updatechannel" />
+            <param name="sysProp" value="sysUpdateChannel" />
+        </antcall>
+    </target>
+
+    <propertyset id="sysUpdateChannel" description="updateChannel Operation">
+        <propertyref name="paramfile" />
+        <propertyref name="tp" />
+        <propertyref name="channelname" />
+        <propertyref name="params" />
+        <propertyref name="state" />
+        <propertyref name="redeployAgreements" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+    <!-- end: bbalakum:16605312 -->
+
+
+    <target name="resetchannelpassword" description="set channel password">
+        <antcall target="utility">
+            <param name="args1" value="resetchannelpassword" />
+            <param name="sysProp" value="sysResetChannelPassword" />
+        </antcall>
+    </target>
+
+    <propertyset id="sysResetChannelPassword" description="reset channel password">
+        <propertyref name="paramfile" />
+        <propertyref name="tp" />
+        <propertyref name="channelname" />
+        <propertyref name="password" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+
+    <propertyset id="sysGeneratePasswordKey" description="Generate key for password">
+        <propertyref name="paramfile" />
+        <propertyref name="passkey" />
+        <propertyref name="password" />
+        <propertyref name="exitonerror" />
+    </propertyset>
+
+
+    <!-- Bug 12799246 : added the below targets with prefix b2b. Need to remove the above targets with same name in future release-->
+    <target name="b2bupdatechannel" description="activate or deactivate channel">
+        <antcall target="utility">
+            <param name="args1" value="updatechannel" />
+            <param name="sysProp" value="sysUpdateChannel" />
+        </antcall>
+    </target>
+
+    <target name="b2bresetchannelpassword" description="set channel password">
+        <antcall target="utility">
+            <param name="args1" value="resetchannelpassword" />
+            <param name="sysProp" value="sysResetChannelPassword" />
+        </antcall>
+    </target>
+
+
+
+    <target name="b2bgeneratepasswordkey" description="Generate key for password">
+        <antcall target="utility">
+            <param name="args1" value="generatepasswordkey" />
+            <param name="sysProp" value="sysGeneratePasswordKey" />
+        </antcall>
+    </target>
+    <target name="migratedc" description="Migrate MLLP channels to trading partner">
+        <antcall target="utility">
+            <param name="args1" value="migratedc" />
+            <param name="sysProp" value="sysMigrateDC" />
+        </antcall>
+    </target>
+    <propertyset id="sysMigrateDC" description="migratedc Operation">
+    </propertyset>
+
+
+
+</project>

@@ -19,6 +19,7 @@ sourceSets {
 sourceCompatibility = 1.5
 
 repositories {
+    mavenLocal()
     mavenCentral()
 }
 

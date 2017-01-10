@@ -1,5 +1,5 @@
 group 'com.avioconsulting'
-version '1.0.2'
+version '1.0.3'
 
 configurations {
     provided
@@ -52,6 +52,7 @@ task pluginDescriptor( type: Exec ) {
 project.compileGroovy.doLast{ pluginDescriptor.execute() }
 
 dependencies {
+    compile 'org.apache.commons:commons-io:1.3.2'
     compile 'org.apache.ant:ant:1.9.7'
     compile 'org.apache.maven:maven-plugin-api:3.3.9'
     provided 'org.apache.maven.plugin-tools:maven-plugin-annotations:3.5'

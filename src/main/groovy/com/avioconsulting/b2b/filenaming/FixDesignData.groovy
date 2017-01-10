@@ -1,7 +1,5 @@
 package com.avioconsulting.b2b.filenaming
 
-import org.apache.commons.io.FileUtils
-
 class FixDesignData {
     private final Closure logger
 
@@ -30,10 +28,25 @@ class FixDesignData {
         def newFile = new File(directory, "${newId}.xml")
         this.logger "Renaming ${tradingPartnerFile} to ${newFile} and updating ID..."
         updateXml(tradingPartnerFile, rootNode)
-        FileUtils.copyFile tradingPartnerFile, newFile
-        tradingPartnerFile.delete()
+        renameFile(tradingPartnerFile, newFile)
         updateReferences(directory, oldId, newId)
         newId
+    }
+
+    private void renameFile(File old, File newFile) {
+        def success = false
+        // on Windows, locking is causing this to fail unless retried like this
+        for (int i = 0; i < 20; i++) {
+            if (old.renameTo(newFile)) {
+                success = true
+                break
+            }
+            System.gc()
+            Thread.yield()
+        }
+        if (!success) {
+            throw new Exception("Unable to rename file from ${old} to ${newFile}")
+        }
     }
 
     private List<String> updateReferences(File directory, oldId, newId) {

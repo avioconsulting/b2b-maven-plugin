@@ -75,8 +75,7 @@ class B2bExportMojo extends AbstractB2bMojo {
             default:
                 throw new Exception("Unknown value ${this.b2BArtifactType}!")
         }
-
-        filesToRemove.each { file -> new File(file).delete() }
-        dirsToRemove.each { file -> new File(file).deleteDir() }
+        filesToRemove.each { file -> FileUtils.forceDelete(new File(file)) }
+        dirsToRemove.each { dir -> FileUtils.deleteDirectory(new File(dir)) }
     }
 }

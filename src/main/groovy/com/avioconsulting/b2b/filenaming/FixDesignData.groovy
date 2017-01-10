@@ -1,5 +1,7 @@
 package com.avioconsulting.b2b.filenaming
 
+import org.apache.commons.io.FileUtils
+
 class FixDesignData {
     private final Closure logger
 
@@ -20,12 +22,16 @@ class FixDesignData {
         def oldId = rootNode.@id as String
         def prefix = oldId.contains('tpa') ? 'tpa' : 'tp'
         def newId = "${prefix}_${name}"
+        if (newId == oldId) {
+            return oldId
+        }
         rootNode.@id = newId
         def directory = tradingPartnerFile.parentFile
         def newFile = new File(directory, "${newId}.xml")
         this.logger "Renaming ${tradingPartnerFile} to ${newFile} and updating ID..."
         updateXml(tradingPartnerFile, rootNode)
-        tradingPartnerFile.renameTo(newFile)
+        FileUtils.copyFile tradingPartnerFile, newFile
+        tradingPartnerFile.delete()
         updateReferences(directory, oldId, newId)
         newId
     }

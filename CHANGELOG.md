@@ -2,6 +2,7 @@
 
 ## 1.0.6
 * Clean the target/classes directory automatically to avoid cruft from previous run being deployed
+* Consistent order on XML elements so that when B2B changes attribute order slightly, it will not show up as a change with source control diff tools
 * Package goal creates a file w/ JAR extension rather than ZIP to be consistent with artifacts
 
 ## 1.0.5

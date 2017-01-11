@@ -1,6 +1,7 @@
 package com.avioconsulting.b2b.maven
 
 import com.avioconsulting.b2b.filenaming.Renamer
+import groovy.xml.XmlUtil
 import org.apache.commons.io.FileUtils
 import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
@@ -53,6 +54,17 @@ class B2bExportMojo extends AbstractB2bMojo {
         def renamer = new Renamer({ str -> this.log.info str })
         renamer.fixNames outputDir
         clean outputDir
+        // B2B rearranges order slightly, this will ensure consistent order for source control diffs, etc.
+        consistentXmlOrder outputDir
+    }
+
+    private void consistentXmlOrder(File b2bDir) {
+        def xmlFiles = new FileNameFinder().getFileNames(b2bDir.absolutePath, '**/*.xml')
+        xmlFiles.each { xmlFile ->
+            def rootNode = new XmlParser().parse(xmlFile)
+            // XmlNodePrinter omits the <? xml declaration
+            XmlUtil.serialize(rootNode, new FileWriter(xmlFile))
+        }
     }
 
     private void clean(File b2bDir) {

@@ -16,6 +16,12 @@ class B2bExportMojo extends AbstractB2bMojo {
     private boolean doExport
 
     void execute() throws MojoExecutionException, MojoFailureException {
+        def classesDir = new File(this.project.build.outputDirectory)
+        if (classesDir.exists()) {
+            this.log.info "Cleaning output directory to avoid B2B cruft ${classesDir}..."
+            classesDir.deleteDir()
+            classesDir.mkdirs()
+        }
         if (!this.doExport) {
             this.log.info 'Skipping B2B export, use -Db2b.export=true to enable it'
             return

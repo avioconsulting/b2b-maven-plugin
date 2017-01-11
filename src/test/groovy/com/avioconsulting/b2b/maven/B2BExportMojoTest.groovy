@@ -1,6 +1,8 @@
 package com.avioconsulting.b2b.maven
 
 import groovy.test.GroovyAssert
+import org.apache.maven.model.Build
+import org.apache.maven.project.MavenProject
 import org.junit.Before
 import org.junit.Test
 
@@ -15,6 +17,8 @@ class B2BExportMojoTest implements MojoAnt {
     void setup() {
         mojo = new B2bExportMojo()
         mojo.metaClass.getBaseDir = { -> baseDirectory }
+        def build = [outputDirectory: new File(new File(baseDirectory, 'target'), 'classes')] as Build
+        mojo.metaClass.project = [build: build] as MavenProject
     }
 
     @Test

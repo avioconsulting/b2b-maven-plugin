@@ -42,7 +42,7 @@ trait MojoAnt {
             b2bDir.mkdirs()
             def ediDir = new File(b2bDir, 'EDI_X12/v5010/837/837Default')
             ediDir.mkdirs()
-            FileUtils.touch new File(b2bDir, 'doc_HL7.xml')
+            new File(b2bDir, 'doc_HL7.xml').write("<xml/>")
             createTradingPartnerFile 'partner1', b2bDir
             createTradingPartnerFile 'partner2', b2bDir
             createTradingPartnerAgreementFile 'agree1', b2bDir

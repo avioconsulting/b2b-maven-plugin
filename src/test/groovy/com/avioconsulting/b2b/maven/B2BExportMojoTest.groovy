@@ -89,6 +89,22 @@ class B2BExportMojoTest implements MojoAnt {
     }
 
     @Test
+    void runs_Reformats_Xml() {
+        // arrange
+        mojo.doExport = true
+        mojo.b2BArtifactType = B2BArtifactTypes.DocumentDefinitions
+        simpleFileStub()
+
+        // act
+        mojo.execute()
+        def fileContents = new File(baseDirectory, 'src/main/resources/b2b/doc_HL7.xml').readLines()
+
+        // assert
+        assertThat fileContents,
+                   is(equalTo(['<?xml version="1.0" encoding="UTF-8"?><xml/>']))
+    }
+
+    @Test
     void runs_FileStructure_TradingPartners_NoList() {
         // arrange
         mojo.doExport = true

@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.7
+* Automatically update listening channels after deploying for trading partner projects. This fixes an issue where the channel would be disabled on the 2nd deployment going forward and then require a restart of the soa_server after enabling in the GUI
+
 ## 1.0.6
 * Clean the target/classes directory automatically to avoid cruft from previous run being deployed
 * Consistent order on XML elements so that when B2B changes attribute order slightly, it will not show up as a change with source control diff tools

@@ -1,5 +1,6 @@
 package com.avioconsulting.b2b.maven
 
+import com.avioconsulting.b2b.util.ListeningChannelFetcher
 import org.apache.maven.plugin.MojoExecutionException
 import org.apache.maven.plugin.MojoFailureException
 import org.apache.maven.plugins.annotations.Mojo
@@ -32,9 +33,15 @@ class B2bImportMojo extends AbstractB2bMojo {
         if (this.b2BArtifactType != B2BArtifactTypes.PartnersAndAgreements) {
             return
         }
-
         antProject.setProperty 'tpanames', agreements.join(',')
         ant 'b2bdeploy'
+        def listeningChannels = new ListeningChannelFetcher().fetchListeningChannels(new File(this.project.build.outputDirectory))
+        antProject.setProperty 'state', 'active'
+        listeningChannels.each { channelName ->
+            this.log.info "Activating listening channel ${channelName}"
+            antProject.setProperty 'channelname',  channelName
+            ant 'updatechannel'
+        }
     }
 
     private File getProjectArtifact() {

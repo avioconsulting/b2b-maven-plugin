@@ -35,7 +35,7 @@ class B2bImportMojo extends AbstractB2bMojo {
         }
         antProject.setProperty 'tpanames', agreements.join(',')
         ant 'b2bdeploy'
-        def listeningChannels = new ListeningChannelFetcher().fetchListeningChannels(new File(this.project.build.outputDirectory))
+        def listeningChannels = new ListeningChannelFetcher().fetchActiveListeningChannels(new File(this.project.build.outputDirectory))
         antProject.setProperty 'state', 'active'
         listeningChannels.each { channelName ->
             this.log.info "Activating listening channel ${channelName}"

@@ -25,7 +25,7 @@
       </TransportProtocolRef>
       <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_CDzKzev7245457546811583072" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
    </DeliveryChannel>
-   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-6011221507416030964" internal="false" listening="true" name="BETTERMMA2" responseMode="None" useGenericWSDL="false">
+   <DeliveryChannel ackMode="None" active="true" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-6011221507416030964" internal="false" listening="true" name="BETTERMMA2" responseMode="None" useGenericWSDL="false">
       <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_gWj5750328934174791020">
          <ParameterValue id="nw_param_val_CYbPX6673020420688649315" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
       </ExchangeProtocolRef>

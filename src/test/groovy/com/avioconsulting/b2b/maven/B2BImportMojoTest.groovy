@@ -46,7 +46,7 @@ class B2BImportMojoTest implements MojoAnt {
         mojo.agreements = ['agree1']
         simpleFileStub()
         def stub = new StubFor(ListeningChannelFetcher)
-        stub.demand.fetchListeningChannels { File file ->
+        stub.demand.fetchActiveListeningChannels { File file ->
             assertThat file,
                        is(equalTo(new File(new File(baseDirectory, 'target'), 'classes')))
             ['channel1', 'channel2']
@@ -107,7 +107,7 @@ class B2BImportMojoTest implements MojoAnt {
         simpleFileStub()
 
         def stub = new StubFor(ListeningChannelFetcher)
-        stub.demand.fetchListeningChannels { File file ->
+        stub.demand.fetchActiveListeningChannels { File file ->
             assertThat file,
                        is(equalTo(new File(new File(baseDirectory, 'target'), 'classes')))
             ['channel1', 'channel2']

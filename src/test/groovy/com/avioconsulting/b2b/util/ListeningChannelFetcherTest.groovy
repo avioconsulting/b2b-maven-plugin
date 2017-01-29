@@ -8,11 +8,11 @@ import static org.junit.Assert.assertThat
 
 class ListeningChannelFetcherTest {
     @Test
-    void fetchListeningChannels() {
+    void fetchActiveListeningChannels() {
         // arrange
 
         // act
-        def channels = new ListeningChannelFetcher().fetchListeningChannels(new File('src/test/resources'))
+        def channels = new ListeningChannelFetcher().fetchActiveListeningChannels(new File('src/test/resources'))
 
         // assert
         assertThat channels,

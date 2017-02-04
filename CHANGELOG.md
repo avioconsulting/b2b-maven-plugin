@@ -1,5 +1,8 @@
 # CHANGELOG
 
+## 1.0.8
+* All channels are active=false when exported and there is no need to deploy inactive listening channels right now so activate all listening channels
+
 ## 1.0.7
 * Automatically update active listening channels after deploying for trading partner projects. This fixes an issue where the channel would be disabled on the 2nd deployment going forward and then require a restart of the soa_server after enabling in the GUI
 

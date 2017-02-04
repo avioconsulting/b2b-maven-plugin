@@ -12,10 +12,10 @@ class ListeningChannelFetcherTest {
         // arrange
 
         // act
-        def channels = new ListeningChannelFetcher().fetchActiveListeningChannels(new File('src/test/resources'))
+        def channels = new ListeningChannelFetcher().fetchListeningChannels(new File('src/test/resources'))
 
         // assert
         assertThat channels,
-                   is(equalTo(['BETTERMMA', 'BETTERMMA2']))
+                   is(equalTo(['BETTERMMA', 'BETTERMMA2', 'BETTERMMA2']))
     }
 }

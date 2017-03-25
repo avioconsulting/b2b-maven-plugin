@@ -124,7 +124,7 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 
 ## Running
 
-The general idea is to use the B2B console on your laptop as an "IDE". Everything goes in there. Then you run this to populate your repo:
+The general idea is to use the B2B console on your development machine as an "IDE". Everything goes in there. Then you run this to populate your repo:
 
 ```
 mvn -Db2b.export=true generate-resources

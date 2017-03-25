@@ -4,10 +4,22 @@
 
 This plugin helps adopt a development lifecycle when working with B2B artifacts including assisting with extracting out document types, trading partners, and agreements from your local install into source control and then "deploying" those to target environments.
 
+## Maven goals
+
+This plugin defines a new packaging type (b2b) and hooks into the Maven lifecycle at the following phases:
+### generate-resources
+* Runs the `b2bExport` goal if the `b2b.export` property is set to true. This will export document definitions or trading partners+agreements from the B2B server to source control (see below).
+* By default, the Oracle B2B export will use generated IDs on the trading partner and trading partner agreement files. This makes it harder to look at diffs in source control and understand what has changed. The plugin automatically uses trading partner names to have a more consistent set of files for diffing, etc.
+* For the same reason, this goal will also reorder XML nodes in a consistent fashion since the B2B export slightly changes the order each time.
+### package
+Runs the `b2bPackage` goal. This goal simply puts the XML files in the proper ZIP file structure in order to import it to the server.
+### pre-integration-test
+Runs the `b2bImport` goal. This goal is the most complex
+
 ## Building/installing
 
 1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
-2. Until the plugin is published, run ./gradlew clean install to install the plugin in your local .m2 repository.
+2. Until the plugin is published, run ./gradlew clean install to install the plugin in your local `.m2` repository.
 3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the ESS services are running on
 
 ## Usage

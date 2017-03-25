@@ -4,10 +4,15 @@
 
 This plugin helps adopt a development lifecycle when working with B2B artifacts including assisting with extracting out document types, trading partners, and agreements from your local install into source control and then "deploying" those to target environments.
 
-This goes hand in hand with avio-b2b-12.2.1-2.0.pom which adds the standard environment settings.
+## Building/installing
 
-## Project Setup
-2 types of projects:
+1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
+2. Until the plugin is published, run ./gradlew clean install to install the plugin in your local .m2 repository.
+3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the ESS services are running on
+
+## Usage
+
+There are 2 types of projects you can/should define:
 
 ### Document Definitions
 
@@ -20,17 +25,30 @@ This goes hand in hand with avio-b2b-12.2.1-2.0.pom which adds the standard envi
   <version>1.0-SNAPSHOT</version>
   <description>Super POM for tradingpartner1</description>
   <packaging>b2b</packaging>
-
-  <parent>
-    <groupId>com.avioconsulting.oracle.soa</groupId>
-    <artifactId>avio-b2b</artifactId>
-    <version>12.2.1-2-0</version>
-    <relativePath />
-  </parent>
-
+  
   <properties>
     <b2b.artifact.type>DocumentDefinitions</b2b.artifact.type>
+    <soa.t3.url>t3://soa_server_hostname:soa_server1_port</soa.t3.url>
+    <weblogic.user>username</weblogic.user>
+    <weblogic.password>thepassword</weblogic.password>
   </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+         <groupId>com.avioconsulting</groupId>
+         <artifactId>b2b-maven-plugin</artifactId>
+         <version>1.0.8</version>
+         <extensions>true</extensions>
+         <configuration>
+          <soaDeployUrl>${soa.t3.url}</soaDeployUrl>
+          <!-- If you're using settings.xml for these, need to repeat them here, overriden values from settings.xml do not make it into the plugin for some reason -->
+          <weblogicUser>${weblogic.user}</weblogicUser>
+          <weblogicPassword>${weblogic.password}</weblogicPassword>
+        </configuration>
+     </plugin>
+    </plugins>
+  </build>
 </project>
 ```
 
@@ -44,20 +62,33 @@ This goes hand in hand with avio-b2b-12.2.1-2.0.pom which adds the standard envi
   <artifactId>TradingPartner1B2BAVIOConsulting</artifactId>
   <version>1.0-SNAPSHOT</version>
   <description>Super POM for tradingpartner1</description>
-  <packaging>b2b</packaging>
-
-  <parent>
-    <groupId>com.avioconsulting.oracle.soa</groupId>
-    <artifactId>avio-b2b</artifactId>
-    <version>12.2.1-2-0</version>
-    <relativePath />
-  </parent>
+  <packaging>b2b</packaging>  
 
   <properties>
     <b2b.artifact.type>PartnersAndAgreements</b2b.artifact.type>
     <b2b.partners>AVIOConsulting,A_PARTNER</b2b.partners>
     <b2b.agreements>837Agreement,999Agreement</b2b.agreements>
+    <soa.t3.url>t3://soa_server_hostname:soa_server1_port</soa.t3.url>
+    <weblogic.user>username</weblogic.user>
+    <weblogic.password>thepassword</weblogic.password>
   </properties>
+  
+  <build>
+    <plugins>
+      <plugin>
+         <groupId>com.avioconsulting</groupId>
+         <artifactId>b2b-maven-plugin</artifactId>
+         <version>1.0.8</version>
+         <extensions>true</extensions>
+         <configuration>
+          <soaDeployUrl>${soa.t3.url}</soaDeployUrl>
+          <!-- If you're using settings.xml for these, need to repeat them here, overriden values from settings.xml do not make it into the plugin for some reason -->
+          <weblogicUser>${weblogic.user}</weblogicUser>
+          <weblogicPassword>${weblogic.password}</weblogicPassword>
+        </configuration>
+     </plugin>
+    </plugins>
+  </build>
 </project>
 ```
 
@@ -68,14 +99,14 @@ No special tie-ins to JDev, you can organize that however you want
 The general idea is to use the B2B console on your laptop as an "IDE". Everything goes in there. Then you run this to populate your repo:
 
 ```
-mvn -Denv=LOCAL -Db2b.export=true generate-resources
+mvn -Db2b.export=true generate-resources
 # This will run an export from the server but will filter out anything that doesn't match your POM properties (see above)
 ```
 
 Deploy the project like you would a SOA composite:
 
 ```
-mvnd -Denv=LOCAL pre-integration-test
+mvnd pre-integration-test
 ```
 
 ## Wish List

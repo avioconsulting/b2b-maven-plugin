@@ -4,29 +4,45 @@
 
 This plugin helps adopt a development lifecycle when working with B2B artifacts including assisting with extracting out document types, trading partners, and agreements from your local install into source control and then "deploying" those to target environments.
 
+## Building/installing
+
+1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
+2. Until the plugin is published, run ./gradlew clean install to install the plugin in your local `.m2` repository.
+3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the SOA server/cluster is running on.
+4. In order to avoid RMI/T3 message size issues, on the SOA managed servers, you need to change the `Maximum Message Size` to 50000000. You can change that in the WL Console->soa_server name(s) here->Protocols. This also needs to be done on the client where this plugin is run from but the plugin will handle that (see below).
+
+## Maven project types
+
+There are 2 types of projects you can/should define:
+
+### Document definitions
+
+These projects will contain document definitions (e.g. EDI_X12 variants) that specific trading partners/agreements, which can be specified in other projects, will then depend on. You're expected to ensure this project is run/deployed before the trading partner projects.
+
+### Trading partners/agreements
+
+These projects contain specific trading partners and agreements.
+
 ## Maven goals
 
 This plugin defines a new packaging type (b2b) and hooks into the Maven lifecycle at the following phases:
+
 ### generate-resources
-* Runs the `b2bExport` goal if the `b2b.export` property is set to true. This will export document definitions or trading partners+agreements from the B2B server to source control (see below).
+* Runs the `b2bExport` goal if the `b2b.export` property is set to true. This will export document definitions or trading partners+agreements (and only the specified partners+agreements) from the B2B server to source control (see below).
 * By default, the Oracle B2B export will use generated IDs on the trading partner and trading partner agreement files. This makes it harder to look at diffs in source control and understand what has changed. The plugin automatically uses trading partner names to have a more consistent set of files for diffing, etc.
 * For the same reason, this goal will also reorder XML nodes in a consistent fashion since the B2B export slightly changes the order each time.
 ### package
 Runs the `b2bPackage` goal. This goal simply puts the XML files in the proper ZIP file structure in order to import it to the server.
 ### pre-integration-test
-Runs the `b2bImport` goal. This goal is the most complex
+Runs the `b2bImport` goal. This goal is the most complex, it will:
+* Import document definitions OR trading partners/agreements based on the project type (see below)
+* Document definition projects stop at this point
+* Trading partner/agteement projects then will have the trading partners+agreements configured in the POM (see below) "deployed".
+* Then, since B2B seems to not automatically activate listening channels, the plugin fetches all the listening channels it can find in the trading partner files and then uses the B2B `updatechannel` target to ensure they are activated on the server.
 
-## Building/installing
+Both the import and export goals will automatically add the `-Dweblogic.MaxMessageSize` to the B2B ANT task to `ant-b2b-util.xml` in your `${ORACLE_HOME}/soa/bin` directory since the default message size will quickly cause issues.
 
-1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
-2. Until the plugin is published, run ./gradlew clean install to install the plugin in your local `.m2` repository.
-3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the ESS services are running on
-
-## Usage
-
-There are 2 types of projects you can/should define:
-
-### Document Definitions
+### POM example: document definitions
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -64,7 +80,7 @@ There are 2 types of projects you can/should define:
 </project>
 ```
 
-### Trading Partner+Agreement Combos
+### POM example: trading partner+agreements
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>

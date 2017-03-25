@@ -4,13 +4,6 @@
 
 This plugin helps adopt a development lifecycle when working with B2B artifacts including assisting with extracting out document types, trading partners, and agreements from your local install into source control and then "deploying" those to target environments.
 
-## Building/installing
-
-1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
-2. Until the plugin is published, run `./gradlew clean install` to install the plugin in your local `.m2` repository.
-3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the SOA server/cluster is running on.
-4. In order to avoid RMI/T3 message size issues, on the SOA managed servers, you need to change the `Maximum Message Size` to 50000000. You can change that in the WL Console->soa_server name(s) here->Protocols. This also needs to be done on the client where this plugin is run from but the plugin will handle that (see below).
-
 ## Maven project types
 
 There are 2 types of projects you can/should define:
@@ -42,7 +35,16 @@ Runs the `b2bImport` goal. This goal is the most complex, it will:
 
 Both the import and export goals will automatically add the `-Dweblogic.MaxMessageSize` to the B2B ANT task to `ant-b2b-util.xml` in your `${ORACLE_HOME}/soa/bin` directory since the default message size will quickly cause issues.
 
-### POM example: document definitions
+## Setup
+
+### Building/installing
+
+1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
+2. Until the plugin is published, run `./gradlew clean install` to install the plugin in your local `.m2` repository.
+3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the SOA server/cluster is running on.
+4. In order to avoid RMI/T3 message size issues, on the SOA managed servers, you need to change the `Maximum Message Size` to 50000000. You can change that in the WL Console->soa_server name(s) here->Protocols. This also needs to be done on the client where this plugin is run from but the plugin will handle that (see below).
+
+#### POM setup, example: document definitions
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -80,7 +82,7 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 </project>
 ```
 
-### POM example: trading partner+agreements
+### POM setup, example: trading partner+agreements
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -120,9 +122,7 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 </project>
 ```
 
-No special tie-ins to JDev, you can organize that however you want
-
-## Development Workflow
+## Running
 
 The general idea is to use the B2B console on your laptop as an "IDE". Everything goes in there. Then you run this to populate your repo:
 

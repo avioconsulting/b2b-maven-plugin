@@ -14,7 +14,7 @@ These projects will contain document definitions (e.g. EDI_X12 variants) that sp
 
 ### Trading partners/agreements
 
-These projects contain specific trading partners and agreements.
+These projects contain specific trading partners and agreements that reference the document definitions. The main practical difference from the plugin's point of view as compared to document definition projects has to do with ID/XML reformatting and additional deployment steps. Read about the Maven goals for more information.
 
 ## Maven goals
 

@@ -1,16 +1,16 @@
 <?xml version = '1.0' encoding = 'UTF-8'?>
-<TradingPartner hosted="false" id="tp_XnfTl1318734747197746601" logoSO="/soa/b2b/seed/defaultSeededTpIcon.png" name="BETTERMMA" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
-   <Identification id="tpIden_ejWVe6237522730157804743" typeRef="/soa/b2b/types.xml#itype-Name" value="BETTERMMA"/>
+<TradingPartner hosted="false" id="tp_XnfTl1318734747197746601" logoSO="/soa/b2b/seed/defaultSeededTpIcon.png" name="A_PARTNER" xmlns="http://xmlns.oracle.com/integration/b2b/profile">
+   <Identification id="tpIden_ejWVe6237522730157804743" typeRef="/soa/b2b/types.xml#itype-Name" value="A_PARTNER"/>
    <Identification id="tpIden_vHHT-1709799739940170337" typeRef="/soa/b2b/types.xml#itype-AS1" value="00"/>
    <Identification id="tpIden_V5878022975769495520" typeRef="/soa/b2b/types.xml#itype-InterchangeID" value="20488"/>
    <Identification id="tpIden_P-7272204907515055309" typeRef="/soa/b2b/types.xml#itype-GroupIDQualifier" value="ZZ"/>
-   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_ogQYZn-6486582916691713555" internal="false" listening="false" name="BETTERMMA_IN" responseMode="None" useGenericWSDL="false">
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_ogQYZn-6486582916691713555" internal="false" listening="false" name="A_PARTNER_IN" responseMode="None" useGenericWSDL="false">
       <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_IpABUa5195700225005211692">
          <ParameterValue id="nw_param_val_M1845026492605307489" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
       </ExchangeProtocolRef>
       <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_XcFs5711673886709605275" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
          <ParameterValue id="nw_param_val_kOUWB-2138225363625898941" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="5"/>
-         <ParameterValue id="nw_param_val_H-3218096507877318127" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/ToBETTERMMA"/>
+         <ParameterValue id="nw_param_val_H-3218096507877318127" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/ToA_PARTNER"/>
          <ParameterValue id="nw_param_val_SRvDMan-3218250564258974116" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
          <ParameterValue id="nw_param_val_WyeqpTi2219767368164697000" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir"/>
          <ParameterValue id="nw_param_val_RxyqeD-1138231946544895260" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>

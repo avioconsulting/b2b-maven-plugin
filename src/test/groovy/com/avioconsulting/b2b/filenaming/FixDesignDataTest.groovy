@@ -88,10 +88,10 @@ class FixDesignDataTest {
 
         // assert
         assertThat result,
-                   is(equalTo('tpa_BETTERMMA_999Agreement'))
+                   is(equalTo('tpa_A_PARTNER_999Agreement'))
         assertThat inputFilename.exists(),
                    is(equalTo(false))
-        def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
+        def expectedFile = new File(directory, 'tpa_A_PARTNER_999Agreement.xml')
         assertThat expectedFile.exists(),
                    is(equalTo(true))
     }
@@ -103,11 +103,11 @@ class FixDesignDataTest {
 
         // act
         fixer.fix inputFilename
-        def expectedFile = new File(directory, 'tpa_BETTERMMA_999Agreement.xml')
+        def expectedFile = new File(directory, 'tpa_A_PARTNER_999Agreement.xml')
         def actualId = new XmlParser().parse(expectedFile).@id
 
         // assert
         assertThat actualId as String,
-                   is(equalTo('tpa_BETTERMMA_999Agreement'))
+                   is(equalTo('tpa_A_PARTNER_999Agreement'))
     }
 }

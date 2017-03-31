@@ -25,13 +25,13 @@
       </TransportProtocolRef>
       <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_CDzKzev7245457546811583072" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
    </DeliveryChannel>
-   <DeliveryChannel ackMode="None" active="true" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-6011221507416030964" internal="false" listening="true" name="BETTERMMA" responseMode="None" useGenericWSDL="false">
+   <DeliveryChannel ackMode="None" active="true" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-6011221507416030964" internal="false" listening="true" name="A_PARTNER" responseMode="None" useGenericWSDL="false">
       <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_gWj5750328934174791020">
          <ParameterValue id="nw_param_val_CYbPX6673020420688649315" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>
       </ExchangeProtocolRef>
       <TransportProtocolRef id="TRANSPORT_PROTOCOL_REF_TbX959635220387258673" transportProtocolRef="/soa/b2b/seed/protocol.xml#File">
          <ParameterValue id="nw_param_val_kqBK503522427926111967" parameterRef="/soa/b2b/seed/protocol.xml#file-param-polling_interval" value="3"/>
-         <ParameterValue id="nw_param_val_e9087375918347204323" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/BETTERMMA"/>
+         <ParameterValue id="nw_param_val_e9087375918347204323" parameterRef="/soa/b2b/seed/protocol.xml#file-param-folder" value="/home/oracle/Channels/A_PARTNER"/>
          <ParameterValue id="nw_param_val_eCDoNi-1288407773805794293" parameterRef="/soa/b2b/seed/protocol.xml#file-param-minimum_age"/>
          <ParameterValue id="nw_param_val_v8440577267328431506" parameterRef="/soa/b2b/seed/protocol.xml#file-param-archive_dir" value="/home/oracle/Channels/Archive"/>
          <ParameterValue id="nw_param_val_cnxk-5523163238874910922" parameterRef="/soa/b2b/seed/protocol.xml#file-param-preserve_filename"/>
@@ -47,7 +47,7 @@
       </TransportProtocolRef>
       <DigitalSecurity ackSigned="false" id="DIGITAL_SECURITY_nIbdU1246452032778569159" messageEncrypted="false" messageSigned="false" transportSecured="false"/>
    </DeliveryChannel>
-   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-60112215074160309645" internal="false" listening="true" name="BETTERMMA2" responseMode="None" useGenericWSDL="false"/>
+   <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#lc" compressed="false" id="CHANNEL_z-60112215074160309645" internal="false" listening="true" name="A_PARTNER2" responseMode="None" useGenericWSDL="false"/>
    <DeliveryChannel ackMode="None" active="false" channelTypeRef="/soa/b2b/seed/channeltypes.xml#nlc" compressed="false" id="CHANNEL_DxvjbPJ1616626127556501601" internal="true" listening="false" name="Demo_Channel" responseMode="None" useGenericWSDL="false">
       <ExchangeProtocolRef exchangeProtocolRef="/soa/b2b/seed/protocol.xml#Generic-File" id="EXCHG_PROTOCOL_REF_Fv6485038530230241727">
          <ParameterValue id="nw_param_val_jxH6370075979371687631" parameterRef="/soa/b2b/seed/protocol.xml#gfile-param-Identify-TP-by-delivery-channel" value="false"/>

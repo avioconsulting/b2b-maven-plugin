@@ -16,6 +16,6 @@ class ListeningChannelFetcherTest {
 
         // assert
         assertThat channels,
-                   is(equalTo(['BETTERMMA', 'BETTERMMA2', 'BETTERMMA2']))
+                   is(equalTo(['A_PARTNER', 'A_PARTNER2', 'A_PARTNER2']))
     }
 }

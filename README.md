@@ -40,9 +40,10 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 ### Building/installing
 
 1. This plugin uses the B2B ANT task under the hood. As a result, it expects a JDeveloper/SOA Suite Quick Start install on the machine it's being run from.
-2. Until the plugin is published, run `./gradlew clean install` to install the plugin in your local `.m2` repository.
+2. Until the plugin is published, run `./gradlew clean install` to install the plugin in your local `.m2` repository. We used Gradle to build a Maven plugin, which may sound strange but it works just fine.
 3. Ensure the machine running the plugin has network access to the port of the Weblogic managed server that the SOA server/cluster is running on.
 4. In order to avoid RMI/T3 message size issues, on the SOA managed servers, you need to change the `Maximum Message Size` to 50000000. You can change that in the WL Console->soa_server name(s) here->Protocols. This also needs to be done on the client where this plugin is run from but the plugin will handle that (see below).
+5. The plugin can generate a fairly deep directory structure so if you're using Windows, ensure you configure your source control system to handle long file paths. See [Git info](https://gitlab.com/gitlab-org/gitlab-ci-multi-runner/merge_requests/19).
 
 #### POM setup, example: document definitions
 

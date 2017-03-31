@@ -136,7 +136,7 @@ mvn -Db2b.export=true generate-resources
 # This will run an export from the server but will filter out anything that doesn't match your POM properties (see above)
 ```
 
-After running this, ensure you check in **all** changed files. See issue #1.
+After running this, ensure you check in **all** changed files. See [issue](https://github.com/avioconsulting/b2b-maven-plugin/issues/1).
 
 Deploy the project like you would a SOA composite:
 

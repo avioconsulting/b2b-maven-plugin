@@ -14,14 +14,14 @@ These projects will contain document definitions (e.g. EDI_X12 variants) that sp
 
 ### Trading partners/agreements
 
-These projects contain specific trading partners and agreements that reference the document definitions. The main practical difference from the plugin's point of view as compared to document definition projects has to do with ID/XML reformatting and additional deployment steps. Read about the Maven goals for more information.
+These projects contain specific trading partners and agreements that reference the document definitions. The main practical difference from the plugin's point of view as compared to document definition projects has to do with ID/XML reformatting and additional deployment steps. The plugin is designed to eventually allow separate Maven projects for each trading partner to allow granular deployments. Read about the Maven goals for more information.
 
 ## Maven goals
 
 This plugin defines a new packaging type (b2b) and hooks into the Maven lifecycle at the following phases:
 
 ### generate-resources
-* Runs the `b2bExport` goal if the `b2b.export` property is set to true. This will export document definitions or trading partners+agreements (and only the specified partners+agreements) from the B2B server to source control (see below).
+* Runs the `b2bExport` goal if the `b2b.export` property is set to true. This will export document definitions or trading partners+agreements (and only the specified partners+agreements in the POM) from the B2B server to source control (see below).
 * By default, the Oracle B2B export will use generated IDs on the trading partner and trading partner agreement files. This makes it harder to look at diffs in source control and understand what has changed. The plugin automatically uses trading partner names to have a more consistent set of files for diffing, etc.
 * For the same reason, this goal will also reorder XML nodes in a consistent fashion since the B2B export slightly changes the order each time.
 ### package
@@ -72,7 +72,7 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
          <extensions>true</extensions>
          <configuration>
           <soaDeployUrl>${soa.t3.url}</soaDeployUrl>
-          <!-- If you're using settings.xml for these, need to repeat them here, overriden values from settings.xml do not make it into the plugin for some reason -->
+          <!-- If you're using settings.xml for these, need to repeat them here, overridden values from settings.xml do not make it into the plugin for some reason -->
           <weblogicUser>${weblogic.user}</weblogicUser>
           <weblogicPassword>${weblogic.password}</weblogicPassword>
         </configuration>
@@ -83,6 +83,8 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 ```
 
 ### POM setup, example: trading partner+agreements
+
+Until the wish list issue is resolved, at the moment you should have just 1 Maven project/directory for all trading partners on your B2B instance.
 
 ```xml
 <?xml version="1.0" encoding="UTF-8"?>
@@ -96,7 +98,9 @@ Both the import and export goals will automatically add the `-Dweblogic.MaxMessa
 
   <properties>
     <b2b.artifact.type>PartnersAndAgreements</b2b.artifact.type>
+    <!-- These should match up with the trading partner names from the B2B console that you wish to include in this project. This will be used by the export goal to filter. Due to the ID issue in the wish list, include all names here -->
     <b2b.partners>AVIOConsulting,A_PARTNER</b2b.partners>
+    <!-- These should match up with the trading partner agreement names from the B2B console that you wish to include in this project. This will be used by the export goal to filter. Due to the ID issue in the wish list, include all names here -->
     <b2b.agreements>837Agreement,999Agreement</b2b.agreements>
     <soa.t3.url>t3://soa_server_hostname:soa_server1_port</soa.t3.url>
     <weblogic.user>username</weblogic.user>

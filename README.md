@@ -117,7 +117,7 @@ Until the wish list issue is resolved, at the moment you should have just 1 Mave
          <extensions>true</extensions>
          <configuration>
           <soaDeployUrl>${soa.t3.url}</soaDeployUrl>
-          <!-- If you're using settings.xml for these, need to repeat them here, overriden values from settings.xml do not make it into the plugin for some reason -->
+          <!-- If you're using settings.xml for these, need to repeat them here, overridden values from settings.xml do not make it into the plugin for some reason -->
           <weblogicUser>${weblogic.user}</weblogicUser>
           <weblogicPassword>${weblogic.password}</weblogicPassword>
         </configuration>
@@ -136,6 +136,8 @@ mvn -Db2b.export=true generate-resources
 # This will run an export from the server but will filter out anything that doesn't match your POM properties (see above)
 ```
 
+After running this, ensure you check in **all** changed files. See issue #1.
+
 Deploy the project like you would a SOA composite:
 
 ```
@@ -144,5 +146,4 @@ mvnd pre-integration-test
 
 ## Wish List
 
-Before running export, produce a mapping of supported document definition refs in the tp file.
-Then after the export, go back and make all those IDs in the TP and TPA file consistent.
+See [issues](https://github.com/avioconsulting/b2b-maven-plugin/issues/)
